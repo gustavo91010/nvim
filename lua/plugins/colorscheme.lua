@@ -1,0 +1,168 @@
+-- Tema/Corescheme (descomente a seção para o tema que você preferir ou use o seu próprio)
+-- Tema Kanagawa (Paleta personalizada)
+return {
+  -- https://github.com/rebelot/kanagawa.nvim
+  'rebelot/kanagawa.nvim', -- Você pode substituir isso pelo seu tema favorito
+  lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+  priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+  opts = {
+    -- Substitua isso pelas configurações específicas do seu tema ou remova para usar as configurações padrão
+    -- transparent = true,
+    transparent = true, -- deixar o fundo transparente
+    background = {
+      -- light = "lotus",
+      dark = "wave", -- "wave, dragon"
+    },
+    colors = {
+      palette = {
+        -- Cores de fundo
+        sumiInk0 = "#161616", -- modificado
+        sumiInk1 = "#181818", -- modificado
+        sumiInk2 = "#1a1a1a", -- modificado
+        sumiInk3 = "#1F1F1F", -- modificado
+        sumiInk4 = "#2A2A2A", -- modificado
+        sumiInk5 = "#363636", -- modificado
+        sumiInk6 = "#545454", -- modificado
+
+        -- Popups e Flutuantes
+        waveBlue1 = "#322C47", -- modificado
+        waveBlue2 = "#4c4464", -- modificado
+
+        -- Diff e Git
+        winterGreen = "#2B3328",
+        winterYellow = "#49443C",
+        winterRed = "#43242B",
+        winterBlue = "#252535",
+        autumnGreen = "#76A56A", -- modificado
+        autumnRed = "#C34043",
+        autumnYellow = "#DCA561",
+
+        -- Diag
+        samuraiRed = "#E82424",
+        roninYellow = "#FF9E3B",
+        waveAqua1 = "#7E9CD8", -- modificado
+        dragonBlue = "#7FB4CA", -- modificado
+
+        -- Primeiro plano e Comentários
+        oldWhite = "#C8C093",
+        fujiWhite = "#F9E7C0", -- modificado
+        fujiGray = "#727169",
+        oniViolet = "#BFA3E6", -- modificado
+        oniViolet2 = "#BCACDB", -- modificado
+        crystalBlue = "#8CABFF", -- modificado
+        springViolet1 = "#938AA9",
+        springViolet2 = "#9CABCA",
+        springBlue = "#7FC4EF", -- modificado
+        waveAqua2 = "#77BBDD", -- modificado
+
+        springGreen = "#98BB6C",
+        boatYellow1 = "#938056",
+        boatYellow2 = "#C0A36E",
+        carpYellow = "#FFEE99", -- modificado
+
+        sakuraPink = "#D27E99",
+        waveRed = "#E46876",
+        peachRed = "#FF5D62",
+        surimiOrange = "#FFAA44", -- modificado
+        katanaGray = "#717C7C",
+      },
+    },
+  },
+  config = function(_, opts)
+    require('kanagawa').setup(opts) -- Substitua isso pelo seu tema favorito
+    vim.cmd("colorscheme kanagawa") -- Substitua isso pelo seu tema favorito
+
+    -- Cores personalizadas para diffs
+    vim.cmd([[
+      autocmd VimEnter * hi DiffAdd guifg=#00FF00 guibg=#005500
+      autocmd VimEnter * hi DiffDelete guifg=#FF0000 guibg=#550000
+      autocmd VimEnter * hi DiffChange guifg=#CCCCCC guibg=#555555
+      autocmd VimEnter * hi DiffText guifg=#00FF00 guibg=#005500
+    ]])
+
+    -- Cores personalizadas para bordas
+    vim.cmd([[
+      autocmd ColorScheme * hi NormalFloat guifg=#F9E7C0 guibg=#1F1F1F
+      autocmd ColorScheme * hi FloatBorder guifg=#F9E7C0 guibg=#1F1F1F
+    ]])
+  end
+}
+
+-- Tema Kanagawa (Original)
+-- return {
+--   -- https://github.com/rebelot/kanagawa.nvim
+--   'rebelot/kanagawa.nvim', -- Você pode substituir isso pelo seu tema favorito
+--   lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+--   priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+--   opts = {
+--     -- Substitua isso pelas configurações específicas do seu tema ou remova para usar as configurações padrão
+--     -- transparent = true,
+--     background = {
+--       -- light = "lotus",
+--       dark = "wave", -- "wave, dragon"
+--     },
+--   },
+--   config = function(_, opts)
+--     require('kanagawa').setup(opts) -- Substitua isso pelo seu tema favorito
+--     vim.cmd("colorscheme kanagawa") -- Substitua isso pelo seu tema favorito
+--   end
+-- }
+
+-- Tema Tokyo Night
+-- return {
+--   -- https://github.com/folke/tokyonight.nvim
+--   'folke/tokyonight.nvim', -- Você pode substituir isso pelo seu tema favorito
+--   lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+--   priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+--   opts = {
+--     -- Substitua isso pelas configurações específicas do seu tema ou remova para usar as configurações padrão
+--     -- transparent = true,
+--     style = "night", -- outras variações "storm, night, moon, day"
+--   },
+--   config = function(_, opts)
+--     require('tokyonight').setup(opts) -- Substitua isso pelo seu tema favorito
+--     vim.cmd("colorscheme tokyonight") -- Substitua isso pelo seu tema favorito
+--   end
+-- }
+
+-- Tema Catppuccin
+-- return {
+--   -- https://github.com/catppuccin/nvim
+--   'catppuccin/nvim',
+--   name = "catppuccin", -- o nome é necessário caso contrário o plugin aparece como "nvim" devido ao URI do GitHub
+--   lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+--   priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+--   opts = {
+--   --   -- Substitua isso pelas configurações específicas do seu tema ou remova para usar as configurações padrão
+--     -- transparent = true,
+--     flavour = "mocha", -- "latte, frappe, macchiato, mocha"
+--   },
+--   config = function(_, opts)
+--     require('catppuccin').setup(opts) -- Substitua isso pelo seu tema favorito
+--     vim.cmd("colorscheme catppuccin") -- Substitua isso pelo seu tema favorito
+--   end
+-- }
+
+-- Tema Sonokai
+-- return {
+--   -- https://github.com/sainnhe/sonokai
+--   'sainnhe/sonokai',
+--   lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+--   priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+--   config = function(_, opts)
+--     vim.g.sonokai_style = "default" -- "default, atlantis, andromeda, shusia, maia, espresso"
+--     vim.cmd("colorscheme sonokai") -- Substitua isso pelo seu tema favorito
+--   end
+-- }
+
+-- Tema One Nord
+-- return {
+--   -- https://github.com/rmehri01/onenord.nvim
+--   'rmehri01/onenord.nvim',
+--   lazy = false, -- Queremos que o tema seja carregado imediatamente ao iniciar o Neovim
+--   priority = 1000, -- Carregar o tema antes de outros plugins que não são carregados de forma preguiçosa
+--   config = function(_, opts)
+--     vim.cmd("colorscheme onenord") -- Substitua isso pelo seu tema favorito
+--   end
+-- }
+
