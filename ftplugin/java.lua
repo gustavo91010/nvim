@@ -1,9 +1,10 @@
 -- Configuração do JDTLS (LSP Java)
 local home = vim.env.HOME -- Obtém o diretório home
 
+
 local jdtls = require("jdtls")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") -- Obtém o nome do projeto
-local workspace_dir = home .. "/jdtls-workspace/" .. project_name -- Diretório de trabalho do JDTLS
+local workspace_dir = home .. "/.jdtls-workspace/" .. project_name -- Diretório de trabalho do JDTLS
 
 local system_os = ""
 
