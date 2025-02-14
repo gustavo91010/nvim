@@ -51,12 +51,13 @@ keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- encontrar arquivo no e
 
 -- Telescope
 keymap.set("n", "<C-p>", builtin.find_files, {})
-keymap.set("n", "<leader>fg", builtin.live_grep, {})
+keymap.set("n", "<leader>fg", builtin.live_grep, {}) -- deveria procurar no conteudo...
+keymap.set("n", "<C-ç>", builtin.live_grep, {})
 
 keymap.set('n', '<leader>fb', builtin.buffers, {}) -- busca fuzzy por buffers abertos
 keymap.set('n', '<leader>fh', builtin.help_tags, {}) -- busca fuzzy por tags de ajuda
 keymap.set('n', '<leader>fs', builtin.current_buffer_fuzzy_find, {}) -- busca fuzzy no buffer do arquivo atual
-keymap.set('n', '<leader>fo', builtin.lsp_document_symbols, {}) -- busca fuzzy por símbolos LSP/classe
+keymap.set('n', '<leader>fo', builtin.lsp_document_symbols, {}) -- busca fuzzy por símbolos no arquivo
 keymap.set('n', '<leader>fi', builtin.lsp_incoming_calls, {}) -- busca fuzzy por chamadas LSP/entrada
 keymap.set('n', '<leader>fm', function() builtin.treesitter({symbols={'function', 'method'}}) end) -- busca fuzzy por métodos na classe atual
 keymap.set('n', '<leader>ft', function() -- buscar conteúdo no arquivo no nó atual do nvim-tree
@@ -68,9 +69,9 @@ end)
 -- Git-blame
 keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- alternar git blame
 
--- Harpoon
-keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
-keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)
+-- Harpoon favoritos de arquivos
+keymap.set("n", "<leader>ha", require("harpoon.mark").add_file) -- adicionar
+keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu) -- vizualizar
 keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
 keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
 keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
@@ -103,6 +104,10 @@ keymap.set('n', '<leader>gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 keymap.set('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')
+keymap.set('n', '<leader>nt', '<cmd>lua require"jdtls".generate_test_class()<CR>') -- cria a classe de testes, eu esper
+keymap.set('n', '<leader>tm', '<cmd>lua require"jdtls".test_nearest_method()<CR>') -- executa o test atual
+keymap.set('n', '<leader>tc', '<cmd>lua require"jdtls".test_class()<CR>') -- executa a classe de teste atual
+
 
 -- Mapeamentos específicos de tipo de arquivo (podem ser feitos no diretório ftplugin se preferir)
 keymap.set("n", '<leader>go', function()
