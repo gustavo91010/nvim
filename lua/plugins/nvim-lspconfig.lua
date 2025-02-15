@@ -85,6 +85,14 @@ return {
         },
       },
     }
+    -- Configuraão do LSP Kotlin
+    local lsp = require('lspconfig')
+    lsp.kotlin_language_server.setup{
+      filetypes = { "kotlin" , "kt", "kts"},
+      -- If you don't update you $PATH
+      cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
+    }
+
 
     -- Configurar globalmente todos os popups flutuantes de LSP (como hover, ajuda de assinatura, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview

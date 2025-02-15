@@ -8,7 +8,7 @@ return {
   opts = {
     -- Substitua isso pelas configurações específicas do seu tema ou remova para usar as configurações padrão
     -- transparent = true,
-    transparent = true, -- deixar o fundo transparente
+    transparent =true, -- deixar o fundo transparente
     background = {
       -- light = "lotus",
       dark = "wave", -- "wave, dragon"
