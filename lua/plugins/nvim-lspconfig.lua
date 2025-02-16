@@ -36,6 +36,7 @@ return {
         'lua_ls',
         'jdtls',
         'jsonls',
+        'kotlin_language_server',
         'lemminx',
         'marksman',
         'quick_lint_js',
@@ -90,7 +91,8 @@ return {
     lsp.kotlin_language_server.setup{
       filetypes = { "kotlin" , "kt", "kts"},
       -- If you don't update you $PATH
-      cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
+      -- cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
+      cmd = { os.getenv( "HOME" ) .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-serve"},
     }
 
 

@@ -51,7 +51,7 @@ keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- encontrar arquivo no e
 
 -- Telescope
 keymap.set("n", "<C-p>", builtin.find_files, {})
-keymap.set("n", "<leader>fg", builtin.live_grep, {}) -- deveria procurar no conteudo...
+keymap.set("n", "<leader>fg", builtin.live_grep, {}) -- deveria procurar no conteudo.. sudo apt install ripgrep.
 keymap.set("n", "<C-ç>", builtin.live_grep, {})
 
 keymap.set('n', '<leader>fb', builtin.buffers, {}) -- busca fuzzy por buffers abertos

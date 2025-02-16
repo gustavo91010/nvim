@@ -17,6 +17,8 @@ return {
     ensure_installed = {
       'lua',
       'comment',
+      'kotlin',
+      
     },
   },
   config = function (_, opts)
