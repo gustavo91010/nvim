@@ -23,8 +23,8 @@ keymap.set("n", "<leader>sw", "<C-w><5") -- diminuir largura das janelas dividid
 
 -- Gerenciamento de abas
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- abrir uma nova aba
-keymap.set("n", "<leader>toh", ":split | enew<CR>") -- Nova aba horizontal  
-keymap.set("n", "<leader>tov", ":vsplit | enew<CR>") -- Nova aba vertical  
+-- keymap.set("n", "<leader>toh", ":split | enew<CR>") -- Nova aba horizontal  
+-- keymap.set("n", "<leader>tov", ":vsplit | enew<CR>") -- Nova aba vertical  
 
 keymap.set("n", "<leader>tth", ":split<CR>:terminal<CR>") -- Nova aba horizontal com terminal
 keymap.set("n", "<leader>ttv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
