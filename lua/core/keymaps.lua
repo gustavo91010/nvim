@@ -106,6 +106,7 @@ keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>') -- Mo
 keymap.set('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>') -- Renomear símbolo  
 keymap.set('n', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>') -- Formatar código  
 keymap.set('v', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>') -- Formatar código (seleção)  
+keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.code_action()<CR>')  -- Teste com a tecla F2
 keymap.set('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<CR>') -- Ações de código (correções)  
 keymap.set('n', '<leader>gl', '<cmd>lua vim.diagnostic.open_float()<CR>') -- Mostrar erro/aviso  
 keymap.set('n', '<leader>gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>') -- Ir para erro anterior  

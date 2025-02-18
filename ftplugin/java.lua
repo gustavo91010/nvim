@@ -30,6 +30,7 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason
 
 -- Consulte `:help vim.lsp.start_client` para obter uma visão geral das opções `config` suportadas.
 local config = {
+      autostart = true,
   -- O comando que inicia o servidor de linguagem
   -- Veja: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
