@@ -7,7 +7,7 @@ return {
   opts = {
     enabled = true,
     indent = {
-      char = '|',
+      char = '', -- '|',
     },
   },
 }
