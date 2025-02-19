@@ -6,7 +6,7 @@ opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 -- Números das Linhas
 opt.relativenumber = true
 opt.number = true
-opt.scrolloff=8 -- Número mínimo de linhas acima e abaixo do cursor
+-- opt.scrolloff = 8 -- Número mínimo de linhas acima e abaixo do cursor
 
 -- Abas & Indentação
 opt.tabstop = 2
@@ -37,24 +37,34 @@ vim.diagnostic.config {
 -- Backspace
 opt.backspace = "indent,eol,start"
 
-opt.clipboard = "unnamedplus"  -- Isso permite o acesso à área de transferência do sistema
+-- Clipboard
+opt.clipboard = "unnamedplus" -- Isso permite o acesso à área de transferência do sistema
+
+-- Backup
+opt.backup = false      -- Não criar arquivos de backup
+opt.writebackup = false -- Não criar arquivos de backup
+
+vim.cmd("filetype on")
+vim.cmd("filetype plugin on")
+vim.cmd("filetype indent on")
 
 -- Janelas divididas
 opt.splitright = true
 opt.splitbelow = true
+opt.autoread = true -- Se algum outro editor alterar um arquivo que está aberto no vim, ele atualiza
 
 -- Considerar '-' como parte da palavra-chave
 opt.iskeyword:append("-")
 
 -- Habilitar o mouse no nvim
-opt.mouse = "a" -- " "
- 
+opt.mouse = "a"
+
 -- Dobramento de código
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utiliza o Treesitter para dobrar
 
--- Movimento das setas:
+-- Movimento das setas
 vim.api.nvim_set_keymap("n", "<C-Down>", "<C-d>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-Up>", "<C-u>", { noremap = true, silent = true })
 
@@ -73,4 +83,3 @@ vim.api.nvim_set_keymap("x", "<A-S-Down>", ":copy '>+1<CR>gv=gv", { noremap = tr
 -- Duplicar uma linha ou bloco para cima com Alt + Shift + Seta para cima
 vim.api.nvim_set_keymap("n", "<A-S-Up>", ":copy .-1<CR>==k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("x", "<A-S-Up>", ":copy '<-2<CR>gv=gv", { noremap = true, silent = true })
-

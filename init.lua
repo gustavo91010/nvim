@@ -1,4 +1,4 @@
--- Bootstrap lazy
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,20 +12,20 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- This has to be set before initializing lazy
+-- Configurações gerais
 vim.g.mapleader = " "
 
-
--- Initialize lazy with dynamic loading of anything in the plugins directory
+-- Inicializa lazy.nvim e carrega os plugins da pasta lua/plugins
 require("lazy").setup("plugins", {
-   change_detection = {
-    enabled = true, -- automatically check for config file changes and reload the ui
-    notify = false, -- turn off notifications whenever plugin changes are made
+  change_detection = {
+    enabled = true,
+    notify = false,
   },
 })
 
--- These modules are not loaded by lazy
+-- Carrega configurações principais
 require("core.options")
 require("core.keymaps")
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets/"})
 
+-- Carrega os snippets personalizados
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets/" })

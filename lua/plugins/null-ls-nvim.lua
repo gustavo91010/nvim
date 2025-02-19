@@ -5,12 +5,12 @@ return {
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.prettier,      -- JSON, JavaScript, etc.
-        null_ls.builtins.formatting.black,         -- Python
-        null_ls.builtins.formatting.stylua,        -- Lua
+        null_ls.builtins.formatting.prettier,           -- JSON, JavaScript, etc.
+        null_ls.builtins.formatting.black,              -- Python
+        null_ls.builtins.formatting.stylua,             -- Lua
         null_ls.builtins.formatting.google_java_format, -- Java
-        null_ls.builtins.formatting.shfmt,         -- Shell
-        null_ls.builtins.formatting.dockfmt,       -- Dockerfile
+        null_ls.builtins.formatting.shfmt,              -- Shell
+        null_ls.builtins.formatting.dockfmt,            -- Dockerfile
       },
     })
     -- Formatar automaticamente ao salvar
@@ -23,3 +23,6 @@ return {
   end
 
 }
+-- tive que instalar o go sudo apt install -y golang
+
+-- Tive que instalr o go install github.com/jessfraz/dockfmt@latest
