@@ -55,7 +55,6 @@ local config = {
     workspace_dir, -- Diretório de dados do projeto
   },
 
-  -- Este é o padrão se não fornecido, pode ser removido ou ajustado conforme necessário.
   -- Um servidor e cliente LSP dedicados serão iniciados por diretório root único
   root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
 
@@ -160,3 +159,16 @@ end
 -- Inicia um novo cliente e servidor, ou se conecta a um cliente e servidor existentes com base no `root_dir`.
 jdtls.start_or_attach(config)
 
+-- Configuração de destaque de erro na linha inteira
+vim.cmd[[highlight LspDiagnosticsVirtualTextError guibg=none guifg=#FF0000]] -- Erro no texto virtual
+vim.cmd[[highlight LspDiagnosticsUnderlineError guibg=none guifg=#FF0000]] -- Linha com erro destacada
+
+-- Ativa o destaque para erros LSP
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true, -- Texto virtual para os erros
+    signs = true, -- Sinais de erro ao lado
+    underline = true, -- Sublinhado nos erros
+    update_in_insert = false, -- Não atualizar enquanto digita
+  })(_, result, ctx, config)
+end
