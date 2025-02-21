@@ -14,26 +14,27 @@ return {
       theme = "gruvbox", -- "auto, tokyonight, catppuccin, codedark, nord"
     },
     sections = {
-      -- Linha superior
+      -- Linha infetior
       lualine_a = { 'mode' },                          -- Exibe o modo atual (Normal, Insert, etc.)
       lualine_b = { 'branch', 'diff', 'diagnostics' }, -- Exibe o branch git, status de diff, diagnóstico
-      lualine_c = {
-        {
-          -- Customize the filename part of lualine to be parent/filename
-          'filename',
-          file_status = true,     -- Displays file status (readonly status, modified status)
-          newfile_status = false, -- Display new file status (new file means no write after created)
-          path = 4,               -- 0: Just the filename
-          -- 1: Relative path
-          -- 2: Absolute path
-          -- 3: Absolute path, with tilde as the home directory
-          -- 4: Filename and parent dir, with tilde as the home directory
-          symbols = {
-            modified = '[+]', -- Text to show when the file is modified.
-            readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
-          }
-        }
-      }
+
+       lualine_c = {
+         {
+           -- Customize the filename part of lualine to be parent/filename
+           'filename',
+           file_status = true,     -- Displays file status (readonly status, modified status)
+           newfile_status = false, -- Display new file status (new file means no write after created)
+           path = 1,               -- 0: Just the filename
+           -- 1: Relative path
+           -- 2: Absolute path
+           -- 3: Absolute path, with tilde as the home directory
+           -- 4: Filename and parent dir, with tilde as the home directory
+           symbols = {
+             modified = '[+]', -- Text to show when the file is modified.
+             readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
+           }
+         }
+       }
     }
   }
 }

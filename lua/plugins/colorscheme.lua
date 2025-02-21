@@ -36,14 +36,19 @@ return {
         augroup END
         ]])
 
+
+      -- Alterando a cor das palavras-chave
+      vim.cmd [[hi Keyword guifg=#fb4934]] -- Altera para vermelho
+
+
       -- Definindo cores para a pesquisa
-      --      vim.cmd("hi Search guifg=none guibg=none")    -- Cor clara para o texto de Search
-      --    vim.cmd("hi IncSearch guifg=none guibg=none") -- Cor clara para o texto de Search
+           vim.cmd("hi Search guifg=none guibg=none")    -- Cor clara para o texto de Search
+         vim.cmd("hi IncSearch guifg=none guibg=none") -- Cor clara para o texto de Search
 
 
 
-      vim.cmd("hi Search guifg=#928374 guibg=#3c3836")    -- Cor suave de texto cinza claro para Search
-      vim.cmd("hi IncSearch guifg=#d79921 guibg=#504945") -- Cor dourada para IncSearch
+      -- vim.cmd("hi Search guifg=#928374 guibg=#3c3836")    -- Cor suave de texto cinza claro para Search
+      -- vim.cmd("hi IncSearch guifg=#d79921 guibg=#504945") -- Cor dourada para IncSearch
 
       --      require('gruvbox').load()
     end
