@@ -11,7 +11,7 @@ return {
   opts = {
     options = {
       -- For more themes, see https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-      theme = "gruvbox", -- "auto, tokyonight, catppuccin, codedark, nord"
+      theme = "kanagawa", -- "kanagawa, auto, tokyonight, catppuccin, codedark, nord"
     },
     sections = {
       -- Linha infetior

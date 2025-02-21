@@ -11,6 +11,7 @@ return {
   opts = {
     highlight = {
       enable = true,
+      additional_vim_regex_highlighting = true,
     },
     indent = { enable = true },
     auto_install = true, -- automatically install syntax support when entering new file type buffer

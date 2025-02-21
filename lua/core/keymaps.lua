@@ -20,14 +20,15 @@ keymap.set("n", "<leader>sj", "<C-w>-")     -- diminuir altura da janela dividid
 keymap.set("n", "<leader>sk", "<C-w>+")     -- aumentar altura das janelas divididas
 keymap.set("n", "<leader>sl", "<C-w>>5")    -- aumentar largura das janelas divididas
 keymap.set("n", "<leader>sw", "<C-w><5")    -- diminuir largura das janelas divididas
+keymap.set("n", "<leader>sth", ":split<CR>:terminal<CR>")  -- Nova aba horizontal com terminal
+keymap.set("n", "<leader>stv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
+
 
 -- Gerenciamento de abas
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- abrir uma nova aba
 -- keymap.set("n", "<leader>toh", ":split | enew<CR>") -- Nova aba horizontal
 -- keymap.set("n", "<leader>tov", ":vsplit | enew<CR>") -- Nova aba vertical
 
-keymap.set("n", "<leader>tth", ":split<CR>:terminal<CR>")  -- Nova aba horizontal com terminal
-keymap.set("n", "<leader>ttv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
 
 keymap.set("n", "<leader>tx", ":tabclose<CR>")             -- fechar uma aba
 keymap.set("n", "<leader>tn", ":tabn<CR>")                 -- próxima aba

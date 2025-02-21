@@ -22,6 +22,18 @@ opt.wrap = false
 opt.ignorecase = true
 opt.smartcase = true
 
+
+-- Ajustando a cor do fundo do highlight se não gostar... pode tirar...
+vim.cmd[[highlight Search ctermbg=none guibg=none]]
+
+vim.cmd[[highlight Search guibg=#4b4b4b]] -- Um cinza mais suave
+
+-- Highlight ao clicar na palavra
+vim.cmd([[
+  nnoremap <silent> * :let @/='\V\<'.escape(expand('<cword>'), '/\').'\>'<CR>:set hlsearch<CR>
+  nnoremap <silent> # :let @/='\V\<'.escape(expand('<cword>'), '/\').'\>'<CR>:set hlsearch<CR>
+]])
+
 -- Linha do Cursor
 opt.cursorline = true
 
