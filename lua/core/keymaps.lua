@@ -13,15 +13,27 @@ keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- abrir URL sob o cursor
 
 -- Gerenciamento de janelas divididas
 keymap.set("n", "<leader>sv", "<C-w>v")     -- dividir janela verticalmente
-keymap.set("n", "<leader>sh", "<C-w>s")     -- dividir janela horizontalmente:próxima
+keymap.set("n", "<leader>ss", "<C-w>s")     -- dividir janela horizontalmente:próxima
 keymap.set("n", "<leader>se", "<C-w>=")     -- igualar largura das janelas divididas
 keymap.set("n", "<leader>sx", ":close<CR>") -- fechar janela dividida
-keymap.set("n", "<leader>sj", "<C-w>-")     -- diminuir altura da janela dividida
-keymap.set("n", "<leader>sk", "<C-w>+")     -- aumentar altura das janelas divididas
-keymap.set("n", "<leader>sl", "<C-w>>5")    -- aumentar largura das janelas divididas
+
+keymap.set("n", "<leader>sh", "<C-w>h")  -- Vai para a janela à esquerda
+keymap.set("n", "<leader>sj", "<C-w>j")  -- Vai para a janela abaixo
+keymap.set("n", "<leader>sk", "<C-w>k")  -- Vai para a janela acima
+keymap.set("n", "<leader>sl", "<C-w>l")  -- Vai para a janela à direita
+
+keymap.set("n", "<leader>bn", ":bnext")  -- Vai para a janela à direita
+keymap.set("n", "<leader>bp", ":bprev")  -- Vai para a janela à direita
+keymap.set("n", "<leader>bl", ":buffers")  -- Vai para a janela à direita
+keymap.set("n", "<leader>bc", ":lua vim.cmd('buffer ' .. vim.fn.input('Buffer: '))<CR>")
+
+-- keymap.set("n", "<leader>sj", "<C-w>-")     -- diminuir altura da janela dividida
+-- keymap.set("n", "<leader>sk", "<C-w>+")     -- aumentar altura das janelas divididas
+-- keymap.set("n", "<leader>sl", "<C-w>>5")    -- aumentar largura das janelas divididas
 keymap.set("n", "<leader>sw", "<C-w><5")    -- diminuir largura das janelas divididas
 keymap.set("n", "<leader>sth", ":split<CR>:terminal<CR>")  -- Nova aba horizontal com terminal
 keymap.set("n", "<leader>stv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
+keymap.set("n", "<leader>tt", ":!tilix -e nvim %<CR>")  -- Abrir o arquivo atual no Tilix com nvim
 
 
 -- Gerenciamento de abas
@@ -77,10 +89,12 @@ keymap.set('n', '<leader>ft',
 
 -- Git-blame
 keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- alternar git blame
+keymap.set("n", "<leader>gs", ":Gstatus<CR>") -- abre status do Git no modo split
 
 -- Harpoon favoritos de arquivos
 keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)        -- adicionar
 keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu) -- vizualizar
+keymap.set("n", "<leader>hr", function() require("harpoon.mark").rm_file() end) -- remover
 keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
 keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
 keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
@@ -119,16 +133,19 @@ keymap.set('n', '<leader>df', '<cmd>lua vim.diagnostic.setqflist()<CR>')        
 keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')      -- Mostrar símbolos do documento
 keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')            -- Auto-completar
 
--- Mapeamentos específicos de tipo de arquivo (podem ser feitos no diretório ftplugin se preferir)
-keymap.set("n", '<leader>go', function()
-  if vim.bo.filetype == "java" then
-    require("jdtls").organize_imports()
-  end
-end)
--- Forcar auto import
+-- Organizar imports no Java
 keymap.set("n", "<leader>go", function()
   if vim.bo.filetype == "java" then
     require("jdtls").organize_imports()
   end
 end, { desc = "Organizar imports no Java" })
 
+-- Salvar automaticamente ao fechar um buffer modificado
+vim.api.nvim_create_autocmd("BufDelete", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified then
+      vim.cmd("write")
+    end
+  end,
+})

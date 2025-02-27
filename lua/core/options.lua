@@ -6,7 +6,7 @@ opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 -- Números das Linhas
 opt.relativenumber = true
 opt.number = true
--- opt.scrolloff = 8 -- Número mínimo de linhas acima e abaixo do cursor
+opt.scrolloff = 4 -- Número mínimo de linhas acima e abaixo do cursor
 
 -- Abas & Indentação
 opt.tabstop = 2
@@ -55,6 +55,7 @@ opt.clipboard = "unnamedplus" -- Isso permite o acesso à área de transferênci
 -- Backup
 opt.backup = false      -- Não criar arquivos de backup
 opt.writebackup = false -- Não criar arquivos de backup
+opt.backupcopy = "no" 
 
 vim.cmd("filetype on")
 vim.cmd("filetype plugin on")

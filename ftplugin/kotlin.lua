@@ -21,6 +21,8 @@ if cmp then
       documentation = cmp.config.window.bordered(),
     },
   }
+
+ vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.format { async = true }<CR>', { noremap = true, silent = true, desc = "Formatar código" })
 else
   print("nvim-cmp não carregado!")
 end
