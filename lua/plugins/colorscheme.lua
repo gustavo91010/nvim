@@ -106,54 +106,111 @@
 -- }
 --
 
-
--- https://github.com/comfysage/evergarden
 return {
   'comfysage/evergarden',
-  priority = 1000,  -- Prioridade alta para carregar o esquema de cores antes de outros plugins
+  priority = 1000,                 -- Prioridade alta para carregar o esquema de cores antes de outros plugins
   opts = {
-    transparent_background = true,  -- Define o fundo transparente
-    variant = 'hard',  -- Variante do tema: 'hard', 'medium' ou 'soft'
-    overrides = {},    -- Sobrescritas personalizadas (vazio por enquanto)
+    transparent_background = true, -- Define o fundo transparente
+    variant = 'soft',              -- Variante do tema: 'hard', 'medium' ou 'soft'
+    overrides = { },                -- Sobrescritas personalizadas (vazio por enquanto)
   },
   config = function()
-    -- Configura o tema Evergarden com opções personalizadas
     require 'evergarden'.setup {
-      transparent_background = true,  -- Ativa fundo transparente
-      variant = 'hard',  -- Define a variante do tema como 'hard'
-      override_terminal = true,  -- Aplica o tema no terminal embutido
+      theme = { "evergarden" },
+      editor = { },
+      transparent_background = true,
+      variant = 'hard', -- 'hard',
+      override_terminal = true,
       style = {
-        tabline = { 'reverse' },  -- Estilo invertido para a linha de abas
-        search = { 'italic' },  -- Texto em itálico para resultados de busca
-        incsearch = { 'reverse' },  -- Inverte a cor na busca incremental
-        types = { 'italic' },  -- Tipos de dados em itálico
-        keyword = { 'italic' },  -- Palavras-chave em itálico
-        comment = { 'italic' },  -- Comentários em itálico
-        sign = { highlight = false },  -- Desativa destaque em sinais (ex: gitsigns)
+        tabline = { 'reverse' },
+        search = { 'italic' },
+        incsearch = { 'reverse' },
+        types = { 'italic' },
+        keyword = { 'italic' },
+        comment = { 'italic' },
+        sign = { highlight = false },
       },
       integrations = {
-        blink_cmp = true,  -- Integração com o plugin Blink CMP
-        cmp = true,  -- Integração com o plugin CMP para auto-completar
-        gitsigns = true,  -- Integração com o Gitsigns (indicadores de git)
-        indent_blankline = { enable = true, scope_color = 'green' },  -- Linhas de indentação com cor verde
-        nvimtree = true,  -- Integração com o NvimTree (explorador de arquivos)
-        rainbow_delimiters = true,  -- Cores para delimitadores (parênteses, colchetes, etc.)
-        symbols_outline = true,  -- Integração com Symbols Outline (estrutura do código)
-        telescope = true,  -- Integração com o Telescope (busca e navegação)
-        which_key = true,  -- Integração com o WhichKey (atalhos de teclado)
+        blink_cmp = true,
+        cmp = true,
+        gitsigns = true,
+        indent_blankline = { enable = true, scope_color = 'green' },
+        nvimtree = true,
+        rainbow_delimiters = true,
+        symbols_outline = true,
+        telescope = true,
+        which_key = true,
       },
       overrides = {
-        -- Sobrescrita de estilo para o texto normal
         Normal = {
-          '#fddce3',  -- Cor do texto
-          '#1d2021',  -- Cor de fundo
-          style = { 'bold', 'italic' }  -- Texto em negrito e itálico
-        }
+          -- '#fddce3',
+          -- '#000000',
+          -- fg = '#000000',     -- Define a cor do texto para normal
+          style = { 'bold', 'italic' }
+        },
+
+        Comment = {
+          fg = '#888888', -- Cor de comentário mais brilhante
+          style = { 'italic' }
+        },
+        Keyword = {
+          fg = '#ff0000', -- Cor de palavras-chave mais vibrante
+          style = { 'italic' }
+        },
       },
     }
-    require('evergarden').load()  -- Carrega o tema com as configurações definidas
+
+    require('evergarden').load() -- Carrega o tema com as configurações definidas
   end
 }
+
+-- https://github.com/comfysage/evergarden
+-- return {
+--   'comfysage/evergarden',
+--   priority = 1000,  -- Prioridade alta para carregar o esquema de cores antes de outros plugins
+--   opts = {
+--     transparent_background = true,  -- Define o fundo transparente
+--     variant = 'hard',  -- Variante do tema: 'hard', 'medium' ou 'soft'
+--     overrides = {},    -- Sobrescritas personalizadas (vazio por enquanto)
+--   },
+--   config = function()
+--     -- Configura o tema Evergarden com opções personalizadas
+--     require 'evergarden'.setup {
+--       transparent_background = true,  -- Ativa fundo transparente
+--       variant = 'hard',  -- Define a variante do tema como 'hard'
+--       override_terminal = true,  -- Aplica o tema no terminal embutido
+--       style = {
+--         tabline = { 'reverse' },  -- Estilo invertido para a linha de abas
+--         search = { 'italic' },  -- Texto em itálico para resultados de busca
+--         incsearch = { 'reverse' },  -- Inverte a cor na busca incremental
+--         types = { 'italic' },  -- Tipos de dados em itálico
+--         keyword = { 'italic' },  -- Palavras-chave em itálico
+--         comment = { 'italic' },  -- Comentários em itálico
+--         sign = { highlight = false },  -- Desativa destaque em sinais (ex: gitsigns)
+--       },
+--       integrations = {
+--         blink_cmp = true,  -- Integração com o plugin Blink CMP
+--         cmp = true,  -- Integração com o plugin CMP para auto-completar
+--         gitsigns = true,  -- Integração com o Gitsigns (indicadores de git)
+--         indent_blankline = { enable = true, scope_color = 'green' },  -- Linhas de indentação com cor verde
+--         nvimtree = true,  -- Integração com o NvimTree (explorador de arquivos)
+--         rainbow_delimiters = true,  -- Cores para delimitadores (parênteses, colchetes, etc.)
+--         symbols_outline = true,  -- Integração com Symbols Outline (estrutura do código)
+--         telescope = true,  -- Integração com o Telescope (busca e navegação)
+--         which_key = true,  -- Integração com o WhichKey (atalhos de teclado)
+--       },
+--       overrides = {
+--         -- Sobrescrita de estilo para o texto normal
+--         Normal = {
+--           '#fddce3',  -- Cor do texto
+--           '#1d2021',  -- Cor de fundo
+--           style = { 'bold', 'italic' }  -- Texto em negrito e itálico
+--         }
+--       },
+--     }
+--     require('evergarden').load()  -- Carrega o tema com as configurações definidas
+--   end
+-- }
 
 
 -- return {

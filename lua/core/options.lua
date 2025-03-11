@@ -10,6 +10,7 @@ opt.scrolloff = 4 -- Número mínimo de linhas acima e abaixo do cursor
 
 -- Abas & Indentação
 opt.tabstop = 2
+opt.smarttab = true -- para recuar com o shift tab...
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true

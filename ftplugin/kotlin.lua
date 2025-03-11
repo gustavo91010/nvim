@@ -1,5 +1,9 @@
 local cmp = require('cmp')
 
+if not luasnip then
+  print("LuaSnip não carregado!")
+end
+
 if cmp then
   cmp.setup {
     mapping = {
