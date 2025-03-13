@@ -58,6 +58,9 @@ opt.backup = false      -- Não criar arquivos de backup
 opt.writebackup = false -- Não criar arquivos de backup
 opt.backupcopy = "no" 
 
+-- Desabilitar arquivos de swap
+opt.swapfile = false
+
 vim.cmd("filetype on")
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")

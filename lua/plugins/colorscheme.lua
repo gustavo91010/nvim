@@ -1,268 +1,214 @@
+
+
+
+
+
+
+
 -- return {
--- {
---   "morhetz/gruvbox",
---   lazy = false,
+--   {
+--     "ellisonleao/gruvbox.nvim",
+--     priority = 1000,
+--     config = function()
+--       require("gruvbox").setup({
+--         terminal_colors = true, -- Adiciona cores ao terminal do Neovim
+--         undercurl = true,
+--         underline = true,
+--         bold = true,
+--         italic = {
+--           strings = true,
+--           emphasis = true,
+--           comments = true,
+--           operators = false,
+--           folds = true,
+--         },
+--         strikethrough = true,
+--         invert_selection = false,
+--         invert_signs = false,
+--         invert_tabline = false,
+--         invert_intend_guides = false,
+--         inverse = true, -- Inverte fundo para buscas, diffs, statuslines e erros
+--         contrast = "hard", -- "hard", "soft" ou vazio
+--         palette_overrides = {},
+--         overrides = {
+--                   SignColumn = { bg = "#a89984" }
+--         },
+--         dim_inactive = false,
+--         transparent_mode =true,
+--       })
+--       vim.o.background = "dark" -- dark" -- Ou "light"
+--       vim.cmd("colorscheme gruvbox")
+--     end
+--   }
+-- }
+
+
+
+-- return {
+--   'folke/tokyonight.nvim',
 --   priority = 1000,
---   config = function()
---     vim.g.gruvbox_contrast_dark = "hard"       -- Aumenta o contraste para fundo mais escuro
---     vim.g.gruvbox_invert_selection = 0         -- Mantém o fundo da seleção escuro
---     vim.g.gruvbox_bold = 1                     -- Habilita negrito
---     vim.g.gruvbox_italic = 1                   -- Habilita itálico
---     vim.g.gruvbox_italicize_strings = 1        -- Habilita itálico em strings
---     vim.g.gruvbox_material_background = "hard" -- Configura o fundo para mais escuro
---     vim.g.gruvbox_invert_indent_guides = 1     -- Inverte os guias de recuo
---     vim.g.gruvbox_invert_signs = 1             -- Inverte os sinais do GitGutter e Syntastic
---     vim.g.gruvbox_invert_tabline = 1           -- Inverte a linha de abas
-
-
---     -- Definindo fundo transparente
---     vim.cmd("hi Normal guibg=NONE ctermbg=NONE")  -- Fundo transparente para a área normal
---     vim.cmd("hi NonText guibg=NONE ctermbg=NONE") -- Fundo transparente para caracteres não visíveis
---     vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")  -- Fundo transparente para números das linhas
-
---     -- Destacar palavras-chave, funções e outras estruturas
---     vim.cmd("hi Keyword guifg=#fe8019")  -- Altera a cor das palavras-chave para laranja
---     vim.cmd("hi Function guifg=#8ec07c") -- Altera a cor das funções para verde claro
---     -- Aplica o tema
---     vim.cmd("colorscheme gruvbox")
-
-
---     -- deixar a cor do curso mais suave, na real, eu tireo ela... xD
---         vim.cmd([[ hi CursorLine guibg=#323232 guifg=NONE ]])
---         -- ativa o hailight para palavra ssemelhantes
---             vim.cmd([[
---           set hlsearch
---           set incsearch
---           augroup VimHighlight
---             autocmd!
---             autocmd CursorMoved * silent! call matchdelete(999)
---             autocmd CursorMoved * silent! call matchadd('Search', '\V\<'.expand('<cword>').'\>', 999, 999)
---           augroup END
---         ]])
---         -- deixa a barra das linahs co fundo transparenet tambem
---         vim.cmd([[
---           hi LineNr guibg=NONE
---           hi SignColumn guibg=NONE
---         ]])
-
-
---     -- Aplica as configurações de highlight de pesquisa
---     -- vim.cmd([[
---     --   set hlsearch
---     --   set incsearch
---     --   augroup VimHighlight
---     --   autocmd!
---     --   autocmd CursorMoved * silent! call matchdelete(999)
---     --   autocmd CursorMoved * silent! call matchadd('Search', '\V\<'.expand('<cword>').'\>', 999, 999)
---     --   augroup END
---     --   ]])
-
-
---     -- Alterando a cor das palavras-chave
---     -- vim.cmd [[hi Keyword guifg=#fb4934]] -- Altera para vermelho
---     -- Definindo cores para a pesquisa
---     -- vim.cmd("hi Search guifg=none guibg=none")    -- Cor clara para o texto de Search
---     -- vim.cmd("hi IncSearch guifg=none guibg=none") -- Cor clara para o texto de Search
---     -- vim.cmd("hi Search guibg=#3c3836 guifg=none")
---     -- vim.cmd("hi IncSearch guibg=#3c3836 guifg=none")
---     -- vim.cmd("hi Search guifg=#928374 guibg=#3c3836")    -- Cor suave de texto cinza claro para Search
---     -- vim.cmd("hi IncSearch guifg=#d79921 guibg=#504945") -- Cor dourada para IncSearch
-
---     --      require('gruvbox').load()
---   end
--- }
--- }
-
-
-
-
-
---
---
--- -- https://github.com/nanotech/jellybeans.vim
--- return {
---   'nanotech/jellybeans.vim',
---   priority = 1000,                 -- Tema será carregado primeiro antes de outros plugins
 --   opts = {
---     transparent_background = true, -- Habilitar fundo transparente
---     palette = 'default',           -- Paleta de cores, pode ser 'default', 'light', etc.
---     cursor = 'block',              -- Estilo do cursor, pode ser 'block', 'underline'
---     underline = true,              -- Ativa o sublinhado para algumas partes da interface
+--     style = 'night', -- Opções: 'storm', 'night', 'moon', 'day'
+--     transparent = true,
+--     terminal_colors = true,
+--     styles = {
+--       comments = { italic = true },
+--       keywords = { italic = true },
+--       functions = {},
+--       variables = {},
+--       sidebars = 'dark',
+--       floats = 'dark',
+--     },
 --   },
 --   config = function()
---     vim.cmd [[
---       colorscheme jellybeans
---     ]]
---
---     -- Configuração personalizada
---     vim.g.jellybeans_transparent_background = true -- Fundo transparente
---     vim.g.jellybeans_palette = 'default'           -- Paleta de cores
---     vim.g.jellybeans_cursor = 'block'              -- Estilo do cursor
---     vim.g.jellybeans_underline = 1                 -- Ativar sublinhado
---
---     -- require('jellybeans').load()
---   end,
---
+--     -- Configuração do tema
+--     require('tokyonight').setup({
+--       style = "night",
+--       transparent = true,  -- Garantir que o fundo do Neovim seja transparente
+--     })
+
+--     -- Aplicando o esquema de cores
+--     vim.cmd[[colorscheme tokyonight-night]]
+
+--     -- Personalizando as cores do NvimTree (garantindo fundo transparente)
+--     local hl = vim.api.nvim_set_hl
+--     local c = vim.g.colors_name and vim.g.colors_name or {}
+--     hl(0, "NvimTreeNormal", { fg = c.fg, bg = "NONE" })
+--     hl(0, "NvimTreeVertSplit", { fg = c.fg, bg = "NONE" })
+--     hl(0, "NvimTreeStatusline", { fg = c.fg, bg = "NONE" })
+
+--     -- Garantir transparência no fundo das janelas flutuantes
+--     hl(0, "NormalFloat", { fg = c.fg, bg = "NONE" })
+--     hl(0, "FloatBorder", { fg = c.fg, bg = "NONE" })
+
+--     -- Garantir que o fundo do NvimTree seja transparente
+--     vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "NONE" })
+--     vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { bg = "NONE" })
+--   end
 -- }
+
+
+
+
+
+
+
+
+
+
+
+
+--
 --
 
-return {
-  'comfysage/evergarden',
-  priority = 1000,                 -- Prioridade alta para carregar o esquema de cores antes de outros plugins
-  opts = {
-    transparent_background = true, -- Define o fundo transparente
-    variant = 'soft',              -- Variante do tema: 'hard', 'medium' ou 'soft'
-    overrides = { },                -- Sobrescritas personalizadas (vazio por enquanto)
-  },
-  config = function()
-    require 'evergarden'.setup {
-      theme = { "evergarden" },
-      editor = { },
-      transparent_background = true,
-      variant = 'hard', -- 'hard',
-      override_terminal = true,
-      style = {
-        tabline = { 'reverse' },
-        search = { 'italic' },
-        incsearch = { 'reverse' },
-        types = { 'italic' },
-        keyword = { 'italic' },
-        comment = { 'italic' },
-        sign = { highlight = false },
-      },
-      integrations = {
-        blink_cmp = true,
-        cmp = true,
-        gitsigns = true,
-        indent_blankline = { enable = true, scope_color = 'green' },
-        nvimtree = true,
-        rainbow_delimiters = true,
-        symbols_outline = true,
-        telescope = true,
-        which_key = true,
-      },
-      overrides = {
-        Normal = {
-          -- '#fddce3',
-          -- '#000000',
-          -- fg = '#000000',     -- Define a cor do texto para normal
-          style = { 'bold', 'italic' }
-        },
-
-        Comment = {
-          fg = '#888888', -- Cor de comentário mais brilhante
-          style = { 'italic' }
-        },
-        Keyword = {
-          fg = '#ff0000', -- Cor de palavras-chave mais vibrante
-          style = { 'italic' }
-        },
-      },
-    }
-
-    require('evergarden').load() -- Carrega o tema com as configurações definidas
-  end
-}
-
--- https://github.com/comfysage/evergarden
 -- return {
 --   'comfysage/evergarden',
---   priority = 1000,  -- Prioridade alta para carregar o esquema de cores antes de outros plugins
+--   priority = 1000,                 -- Prioridade alta para carregar o esquema de cores antes de outros plugins
 --   opts = {
---     transparent_background = true,  -- Define o fundo transparente
---     variant = 'hard',  -- Variante do tema: 'hard', 'medium' ou 'soft'
---     overrides = {},    -- Sobrescritas personalizadas (vazio por enquanto)
+--     transparent_background = true, -- Define o fundo transparente
+--     variant = 'soft',              -- Variante do tema: 'hard', 'medium' ou 'soft'
+--     overrides = { },                -- Sobrescritas personalizadas (vazio por enquanto)
 --   },
 --   config = function()
---     -- Configura o tema Evergarden com opções personalizadas
 --     require 'evergarden'.setup {
---       transparent_background = true,  -- Ativa fundo transparente
---       variant = 'hard',  -- Define a variante do tema como 'hard'
---       override_terminal = true,  -- Aplica o tema no terminal embutido
+--       theme = { "evergarden" },
+--       editor = { },
+--       transparent_background = true,
+--       variant = 'hard', -- 'hard',
+--       override_terminal = true,
 --       style = {
---         tabline = { 'reverse' },  -- Estilo invertido para a linha de abas
---         search = { 'italic' },  -- Texto em itálico para resultados de busca
---         incsearch = { 'reverse' },  -- Inverte a cor na busca incremental
---         types = { 'italic' },  -- Tipos de dados em itálico
---         keyword = { 'italic' },  -- Palavras-chave em itálico
---         comment = { 'italic' },  -- Comentários em itálico
---         sign = { highlight = false },  -- Desativa destaque em sinais (ex: gitsigns)
+--         tabline = { 'reverse' },
+--         search = { 'italic' },
+--         incsearch = { 'reverse' },
+--         types = { 'italic' },
+--         keyword = { 'italic' },
+--         comment = { 'italic' },
+--         sign = { highlight = false },
 --       },
 --       integrations = {
---         blink_cmp = true,  -- Integração com o plugin Blink CMP
---         cmp = true,  -- Integração com o plugin CMP para auto-completar
---         gitsigns = true,  -- Integração com o Gitsigns (indicadores de git)
---         indent_blankline = { enable = true, scope_color = 'green' },  -- Linhas de indentação com cor verde
---         nvimtree = true,  -- Integração com o NvimTree (explorador de arquivos)
---         rainbow_delimiters = true,  -- Cores para delimitadores (parênteses, colchetes, etc.)
---         symbols_outline = true,  -- Integração com Symbols Outline (estrutura do código)
---         telescope = true,  -- Integração com o Telescope (busca e navegação)
---         which_key = true,  -- Integração com o WhichKey (atalhos de teclado)
+--         blink_cmp = true,
+--         cmp = true,
+--         gitsigns = true,
+--         indent_blankline = { enable = true, scope_color = 'green' },
+--         nvimtree = true,
+--         rainbow_delimiters = true,
+--         symbols_outline = true,
+--         telescope = true,
+--         which_key = true,
 --       },
 --       overrides = {
---         -- Sobrescrita de estilo para o texto normal
 --         Normal = {
---           '#fddce3',  -- Cor do texto
---           '#1d2021',  -- Cor de fundo
---           style = { 'bold', 'italic' }  -- Texto em negrito e itálico
---         }
+--           -- '#fddce3',
+--           -- '#000000',
+--           -- fg = '#000000',     -- Define a cor do texto para normal
+--           style = { 'bold', 'italic' }
+--         },
+
+--         Comment = {
+--           fg = '#888888', -- Cor de comentário mais brilhante
+--           style = { 'italic' }
+--         },
+--         Keyword = {
+--           fg = '#ff0000', -- Cor de palavras-chave mais vibrante
+--           style = { 'italic' }
+--         },
 --       },
 --     }
---     require('evergarden').load()  -- Carrega o tema com as configurações definidas
+
+--     require('evergarden').load() -- Carrega o tema com as configurações definidas
 --   end
 -- }
 
+return {
+  -- https://github.com/deparr/tairiki.nvim
 
--- return {
---   -- https://github.com/deparr/tairiki.nvim
+  'deparr/tairiki.nvim',
+  lazy = false,
+  priority = 1000, -- necessário apenas se você usar o tairiki como tema padrão
+  config = function()
+    require('tairiki').setup {
+      -- Opções principais --
+      style = 'dark', -- Estilo padrão do tema. Escolha entre 'dark', 'light' e 'dimmed'
+      transparent = true,  -- Mostrar/ocultar o fundo
+      term_colors = true, -- Mudar as cores do terminal conforme o estilo do tema selecionado
+      ending_tildes = false, -- Mostrar as tilde de fim de buffer. Por padrão, estão ocultas
+      cmp_itemkind_reverse = false, -- Inverter os destaques de tipo de item no menu do cmp
+      visual_bold = false, -- Deixar seleções visuais em negrito
 
---   'deparr/tairiki.nvim',
---   lazy = false,
---   priority = 1000, -- necessário apenas se você usar o tairiki como tema padrão
---   config = function()
---     require('tairiki').setup {
---       -- Opções principais --
---       style = 'dark', -- Estilo padrão do tema. Escolha entre 'dark', 'light' e 'dimmed'
---       transparent = false,  -- Mostrar/ocultar o fundo
---       term_colors = true, -- Mudar as cores do terminal conforme o estilo do tema selecionado
---       ending_tildes = false, -- Mostrar as tilde de fim de buffer. Por padrão, estão ocultas
---       cmp_itemkind_reverse = false, -- Inverter os destaques de tipo de item no menu do cmp
---       visual_bold = false, -- Deixar seleções visuais em negrito
+      -- Alternar estilo do tema ---
+      toggle_style_key = nil, -- Tecla de atalho para alternar o estilo do tema. Deixe como nil para desativar, ou defina como uma string, por exemplo "<leader>ts"
+      toggle_style_list = { 'dark' }, -- Estilos que a tecla de atalho `toggle_style_key` irá percorrer
 
---       -- Alternar estilo do tema ---
---       toggle_style_key = nil, -- Tecla de atalho para alternar o estilo do tema. Deixe como nil para desativar, ou defina como uma string, por exemplo "<leader>ts"
---       toggle_style_list = { 'dark' }, -- Estilos que a tecla de atalho `toggle_style_key` irá percorrer
+      -- Mudar estilo do código ---
+      -- As opções são italic, bold, underline, none
+      -- Você pode configurar múltiplos estilos separados por vírgula. Por exemplo, keywords = 'italic,bold'
+      code_style = {
+        comments = 'italic', -- Estilo de comentário
+        keywords = 'none', -- Estilo de palavras-chave
+        functions = 'none', -- Estilo de funções
+        strings = 'none', -- Estilo de strings
+        variables = 'none' -- Estilo de variáveis
+      },
 
---       -- Mudar estilo do código ---
---       -- As opções são italic, bold, underline, none
---       -- Você pode configurar múltiplos estilos separados por vírgula. Por exemplo, keywords = 'italic,bold'
---       code_style = {
---         comments = 'italic', -- Estilo de comentário
---         keywords = 'none', -- Estilo de palavras-chave
---         functions = 'none', -- Estilo de funções
---         strings = 'none', -- Estilo de strings
---         variables = 'none' -- Estilo de variáveis
---       },
+      -- Opções do Lualine --
+      lualine = {
+        transparent = false, -- Transparência da barra central do lualine
+      },
 
---       -- Opções do Lualine --
---       lualine = {
---         transparent = false, -- Transparência da barra central do lualine
---       },
+      -- Destaques personalizados --
+      colors = {}, -- Substituir as cores padrão
+      highlights = {}, -- Substituir os grupos de destaque
 
---       -- Destaques personalizados --
---       colors = {}, -- Substituir as cores padrão
---       highlights = {}, -- Substituir os grupos de destaque
-
---       -- Configuração dos Plugins --
---       diagnostics = {
---         darker = true, -- Cores mais escuras para diagnóstico
---         undercurl = true,   -- Usar undercurl em vez de sublinhado para diagnósticos
---         background = true,    -- Usar cor de fundo para texto virtual
---       },
---     }
---     require('tairiki').load() -- necessário para usar como tema padrão, se comporta como ':colorscheme tairiki'
---   end,
--- }
+      -- Configuração dos Plugins --
+      diagnostics = {
+        darker = true, -- Cores mais escuras para diagnóstico
+        undercurl = true,   -- Usar undercurl em vez de sublinhado para diagnósticos
+        background = true,    -- Usar cor de fundo para texto virtual
+      },
+    }
+    require('tairiki').load() -- necessário para usar como tema padrão, se comporta como ':colorscheme tairiki'
+  end,
+}
 
 -- -- kanagawa
 -- return {
