@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 -- return {
 --   {
 --     "ellisonleao/gruvbox.nvim",
@@ -159,56 +152,136 @@
 --   end
 -- }
 
-return {
-  -- https://github.com/deparr/tairiki.nvim
 
+-- sera que vai emular o eclipse mesmo???
+
+return {
   'deparr/tairiki.nvim',
   lazy = false,
-  priority = 1000, -- necessário apenas se você usar o tairiki como tema padrão
+  priority = 1000,
   config = function()
     require('tairiki').setup {
-      -- Opções principais --
-      style = 'dark', -- Estilo padrão do tema. Escolha entre 'dark', 'light' e 'dimmed'
-      transparent = true,  -- Mostrar/ocultar o fundo
-      term_colors = true, -- Mudar as cores do terminal conforme o estilo do tema selecionado
-      ending_tildes = false, -- Mostrar as tilde de fim de buffer. Por padrão, estão ocultas
-      cmp_itemkind_reverse = false, -- Inverter os destaques de tipo de item no menu do cmp
-      visual_bold = false, -- Deixar seleções visuais em negrito
+      style = 'dark',
+      transparent = true,  -- Fundo transparente
+      term_colors = true,
+      ending_tildes = false,
+      cmp_itemkind_reverse = false,
+      visual_bold = false,
 
-      -- Alternar estilo do tema ---
-      toggle_style_key = nil, -- Tecla de atalho para alternar o estilo do tema. Deixe como nil para desativar, ou defina como uma string, por exemplo "<leader>ts"
-      toggle_style_list = { 'dark' }, -- Estilos que a tecla de atalho `toggle_style_key` irá percorrer
+      toggle_style_key = nil,
+      toggle_style_list = { 'dark' },
 
-      -- Mudar estilo do código ---
-      -- As opções são italic, bold, underline, none
-      -- Você pode configurar múltiplos estilos separados por vírgula. Por exemplo, keywords = 'italic,bold'
       code_style = {
-        comments = 'italic', -- Estilo de comentário
-        keywords = 'none', -- Estilo de palavras-chave
-        functions = 'none', -- Estilo de funções
-        strings = 'none', -- Estilo de strings
-        variables = 'none' -- Estilo de variáveis
+        comments = 'italic',
+        keywords = 'bold',
+        functions = 'none',
+        strings = 'none',
+        variables = 'none'
       },
 
-      -- Opções do Lualine --
       lualine = {
-        transparent = false, -- Transparência da barra central do lualine
+        transparent = true,
       },
 
-      -- Destaques personalizados --
-      colors = {}, -- Substituir as cores padrão
-      highlights = {}, -- Substituir os grupos de destaque
+      colors = {
+        -- bg = "NONE",         -- Fundo transparente
+        fg = "#C0C0C0",      -- Texto principal (cinza claro)
+        red = "#FF6666",     -- Erros e alertas (vermelho Eclipse)
+        green = "#99CC99",   -- Código válido (verde Eclipse)
+        yellow = "#FFFF99",  -- Strings (amarelo Eclipse)
+        blue = "#6699CC",    -- Nomes de funções e classes (azul Eclipse)
+        magenta = "#CC99CC", -- Palavras-chave (roxo Eclipse)
+        cyan = "#66CCCC",    -- Variáveis (ciano Eclipse)
+        orange = "#FF9966",  -- Atributos e números (laranja Eclipse)
+      },
 
-      -- Configuração dos Plugins --
+      highlights = {
+        Normal   = { fg = "#C0C0C0", bg = "NONE" },
+        Comment  = { fg = "#999999", italic = true },
+        Keyword  = { fg = "#CC99CC", bold = true },
+        Function = { fg = "#6699CC", bold = true },
+        String   = { fg = "#FFFF99", bold = true },
+        Variable = { fg = "#66CCCC", bold = true },
+        Number   = { fg = "#FF9966", bold = true },
+        Type     = { fg = "#99CC99", bold = true },
+      },
+
       diagnostics = {
-        darker = true, -- Cores mais escuras para diagnóstico
-        undercurl = true,   -- Usar undercurl em vez de sublinhado para diagnósticos
-        background = true,    -- Usar cor de fundo para texto virtual
+        darker = true,
+        undercurl = true,
+        background = true,
       },
     }
-    require('tairiki').load() -- necessário para usar como tema padrão, se comporta como ':colorscheme tairiki'
+    require('tairiki').load()
   end,
 }
+
+
+
+
+
+
+
+
+-- return {
+--   -- https://github.com/deparr/tairiki.nvim
+
+--   'deparr/tairiki.nvim',
+--   lazy = false,
+--   priority = 1000, -- necessário apenas se você usar o tairiki como tema padrão
+--   config = function()
+--     require('tairiki').setup {
+--       -- Opções principais --
+--       style = 'dark',               -- Estilo padrão do tema. Escolha entre 'dark', 'light' e 'dimmed'
+--       transparent = false,          --true,  -- Mostrar/ocultar o fundo
+--       term_colors = true,           -- Mudar as cores do terminal conforme o estilo do tema selecionado
+--       ending_tildes = false,        -- Mostrar as tilde de fim de buffer. Por padrão, estão ocultas
+--       cmp_itemkind_reverse = false, -- Inverter os destaques de tipo de item no menu do cmp
+--       visual_bold = false,          -- Deixar seleções visuais em negrito
+
+--       -- Alternar estilo do tema ---
+--       toggle_style_key = nil,         -- Tecla de atalho para alternar o estilo do tema. Deixe como nil para desativar, ou defina como uma string, por exemplo "<leader>ts"
+--       toggle_style_list = { 'dark' }, -- Estilos que a tecla de atalho `toggle_style_key` irá percorrer
+
+--       -- Mudar estilo do código ---
+--       -- As opções são italic, bold, underline, none
+--       -- Você pode configurar múltiplos estilos separados por vírgula. Por exemplo, keywords = 'italic,bold'
+--       code_style = {
+--         comments = 'italic', -- Estilo de comentário
+--         keywords = 'none',   -- Estilo de palavras-chave
+--         functions = 'none',  -- Estilo de funções
+--         strings = 'none',    -- Estilo de strings
+--         variables = 'none'   -- Estilo de variáveis
+--       },
+
+--       -- Opções do Lualine --
+--       lualine = {
+--         transparent = true, --false, -- Transparência da barra central do lualine
+--       },
+
+--       -- Destaques personalizados --
+--       colors = {
+--         bg = "#000000",   -- Fundo preto para máximo contraste
+--         red = "#ff5555",
+--         green = "#50fa7b",
+--         yellow = "#f1fa8c",
+--         blue = "#bd93f9",
+--         magenta = "#ff79c6",
+--         cyan = "#8be9fd",
+--         orange = "#ffb86c",
+--       },               -- Substituir as cores padrão
+--       highlights = {}, -- Substituir os grupos de destaque
+
+--       -- Configuração dos Plugins --
+--       diagnostics = {
+--         darker = true,     -- Cores mais escuras para diagnóstico
+--         undercurl = true,  -- Usar undercurl em vez de sublinhado para diagnósticos
+--         background = true, -- Usar cor de fundo para texto virtual
+--       },
+--     }
+--     require('tairiki').load() -- necessário para usar como tema padrão, se comporta como ':colorscheme tairiki'
+--   end,
+-- }
 
 -- -- kanagawa
 -- return {

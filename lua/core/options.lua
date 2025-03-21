@@ -6,7 +6,7 @@ opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 -- Números das Linhas
 opt.relativenumber = true
 opt.number = true
-opt.scrolloff = 4 -- Número mínimo de linhas acima e abaixo do cursor
+opt.scrolloff = 8 -- Número mínimo de linhas acima e abaixo do cursor
 
 -- Abas & Indentação
 opt.tabstop = 2

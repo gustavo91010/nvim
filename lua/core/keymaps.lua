@@ -59,7 +59,7 @@ keymap.set("n", "<leader>bc", ":lua vim.cmd('buffer ' .. vim.fn.input('Buffer: '
 keymap.set("n", "<leader>sw", "<C-w><5")                   -- diminuir largura das janelas divididas
 keymap.set("n", "<leader>sth", ":split<CR>:terminal<CR>")  -- Nova aba horizontal com terminal
 keymap.set("n", "<leader>stv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
-keymap.set("n", "<leader>tt", ":!tilix -e nvim %<CR>")     -- Abrir o arquivo atual no Tilix com nvim
+keymap.set("n", "<leader>tt", ":!tilix -e nvim -R %<CR>")     -- Abrir o arquivo atual no Tilix com nvim
 keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Sair do modo terminal com Esc
 
 
@@ -124,6 +124,7 @@ keymap.set("n", "<leader>gs", ":Gstatus<CR>")        -- abre status do Git no mo
 keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)                 -- adicionar
 keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)          -- vizualizar
 keymap.set("n", "<leader>hr", function() require("harpoon.mark").rm_file() end) -- remover
+keymap.set("n", "<leader>hcl", function() require("harpoon.mark").clear_all() end) -- limpar tudo
 keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
 keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
 keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end)
