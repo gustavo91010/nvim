@@ -26,10 +26,9 @@ opt.smartcase = true
 
 -- Ajustando a cor do fundo do highlight se não gostar... pode tirar...
 vim.cmd[[highlight Search ctermbg=none guibg=none]]
-
 vim.cmd[[highlight Search guibg=#4b4b4b]] -- Um cinza mais suave
 
--- Highlight ao clicar na palavra
+-- -- Highlight ao clicar na palavra
 vim.cmd([[
   nnoremap <silent> * :let @/='\V\<'.escape(expand('<cword>'), '/\').'\>'<CR>:set hlsearch<CR>
   nnoremap <silent> # :let @/='\V\<'.escape(expand('<cword>'), '/\').'\>'<CR>:set hlsearch<CR>
@@ -60,7 +59,6 @@ opt.backupcopy = "no"
 
 -- Desabilitar arquivos de swap
 opt.swapfile = false
-
 vim.cmd("filetype on")
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")

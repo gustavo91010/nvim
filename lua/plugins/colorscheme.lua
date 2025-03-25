@@ -1,3 +1,61 @@
+return {
+  {
+    "EdenEast/nightfox.nvim",
+    priority = 1,
+
+    config = function()
+      -- Default options
+      require('nightfox').setup({
+        options = {
+          -- Compiled file's destination location
+          compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+          compile_file_suffix = "_compiled", -- Compiled file suffix
+          transparent = true,         -- Disable setting background
+          terminal_colors = false,      -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+          dim_inactive = false,        -- Non focused panes set to alternative background
+          module_default = true,       -- Default enable value for modules
+          colorblind = {
+            enable = false,            -- Enable colorblind support
+            simulate_only = false,     -- Only show simulated colorblind colors and not diff shifted
+            severity = {
+              protan = 0,              -- Severity [0,1] for protan (red)
+              deutan = 0,              -- Severity [0,1] for deutan (green)
+              tritan = 0,              -- Severity [0,1] for tritan (blue)
+            },
+          },
+          styles = {     -- Style to be applied to different syntax groups
+            comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "NONE",
+            constants = "NONE",
+            functions = "NONE",
+            keywords = "NONE",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "NONE",
+            variables = "NONE",
+          },
+          inverse = { -- Inverse highlight for different types
+            match_paren = false,
+            visual = false,
+            search = false,
+          },
+          modules = { -- List of various plugins and additional options
+            -- ...
+          },
+        },
+        palettes = {},
+        specs = {},
+        groups = {},
+      })
+
+      -- setup must be called before loading
+      vim.cmd("colorscheme nightfox")
+    end
+
+  } -- lazy
+
+}
 -- return {
 --   {
 --     "ellisonleao/gruvbox.nvim",
@@ -153,68 +211,68 @@
 -- }
 
 
--- sera que vai emular o eclipse mesmo???
+-- -- sera que vai emular o eclipse mesmo???
 
-return {
-  'deparr/tairiki.nvim',
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require('tairiki').setup {
-      style = 'dark',
-      transparent = true,  -- Fundo transparente
-      term_colors = true,
-      ending_tildes = false,
-      cmp_itemkind_reverse = false,
-      visual_bold = false,
+-- return {
+--   'deparr/tairiki.nvim',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require('tairiki').setup {
+--       style = 'dark',
+--       transparent = true,  -- Fundo transparente
+--       term_colors = true,
+--       ending_tildes = false,
+--       cmp_itemkind_reverse = false,
+--       visual_bold = false,
 
-      toggle_style_key = nil,
-      toggle_style_list = { 'dark' },
+--       toggle_style_key = nil,
+--       toggle_style_list = { 'dark' },
 
-      code_style = {
-        comments = 'italic',
-        keywords = 'bold',
-        functions = 'none',
-        strings = 'none',
-        variables = 'none'
-      },
+--       code_style = {
+--         comments = 'italic',
+--         keywords = 'bold',
+--         functions = 'none',
+--         strings = 'none',
+--         variables = 'none'
+--       },
 
-      lualine = {
-        transparent = true,
-      },
+--       lualine = {
+--         transparent = true,
+--       },
 
-      colors = {
-        -- bg = "NONE",         -- Fundo transparente
-        fg = "#C0C0C0",      -- Texto principal (cinza claro)
-        red = "#FF6666",     -- Erros e alertas (vermelho Eclipse)
-        green = "#99CC99",   -- Código válido (verde Eclipse)
-        yellow = "#FFFF99",  -- Strings (amarelo Eclipse)
-        blue = "#6699CC",    -- Nomes de funções e classes (azul Eclipse)
-        magenta = "#CC99CC", -- Palavras-chave (roxo Eclipse)
-        cyan = "#66CCCC",    -- Variáveis (ciano Eclipse)
-        orange = "#FF9966",  -- Atributos e números (laranja Eclipse)
-      },
+--       colors = {
+--         -- bg = "NONE",         -- Fundo transparente
+--         fg = "#C0C0C0",      -- Texto principal (cinza claro)
+--         red = "#FF6666",     -- Erros e alertas (vermelho Eclipse)
+--         green = "#99CC99",   -- Código válido (verde Eclipse)
+--         yellow = "#FFFF99",  -- Strings (amarelo Eclipse)
+--         blue = "#6699CC",    -- Nomes de funções e classes (azul Eclipse)
+--         magenta = "#CC99CC", -- Palavras-chave (roxo Eclipse)
+--         cyan = "#66CCCC",    -- Variáveis (ciano Eclipse)
+--         orange = "#FF9966",  -- Atributos e números (laranja Eclipse)
+--       },
 
-      highlights = {
-        Normal   = { fg = "#C0C0C0", bg = "NONE" },
-        Comment  = { fg = "#999999", italic = true },
-        Keyword  = { fg = "#CC99CC", bold = true },
-        Function = { fg = "#6699CC", bold = true },
-        String   = { fg = "#FFFF99", bold = true },
-        Variable = { fg = "#66CCCC", bold = true },
-        Number   = { fg = "#FF9966", bold = true },
-        Type     = { fg = "#99CC99", bold = true },
-      },
+--       highlights = {
+--         Normal   = { fg = "#C0C0C0", bg = "NONE" },
+--         Comment  = { fg = "#999999", italic = true },
+--         Keyword  = { fg = "#CC99CC", bold = true },
+--         Function = { fg = "#6699CC", bold = true },
+--         String   = { fg = "#FFFF99", bold = true },
+--         Variable = { fg = "#66CCCC", bold = true },
+--         Number   = { fg = "#FF9966", bold = true },
+--         Type     = { fg = "#99CC99", bold = true },
+--       },
 
-      diagnostics = {
-        darker = true,
-        undercurl = true,
-        background = true,
-      },
-    }
-    require('tairiki').load()
-  end,
-}
+--       diagnostics = {
+--         darker = true,
+--         undercurl = true,
+--         background = true,
+--       },
+--     }
+--     require('tairiki').load()
+--   end,
+-- }
 
 
 

@@ -66,10 +66,6 @@ keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Sair do modo terminal com Esc
 
 -- Gerenciamento de abas
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- abrir uma nova aba
--- keymap.set("n", "<leader>toh", ":split | enew<CR>") -- Nova aba horizontal
--- keymap.set("n", "<leader>tov", ":vsplit | enew<CR>") -- Nova aba vertical
-
-
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- fechar uma aba
 keymap.set("n", "<leader>tn", ":tabn<CR>")     -- próxima aba
 keymap.set("n", "<leader>tp", ":tabp<CR>")     -- aba anterior

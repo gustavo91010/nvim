@@ -17,13 +17,13 @@ return {
 
     -- Atualizações úteis de status para LSP
     -- https://github.com/j-hui/fidget.nvim
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',                        opts = {} },
 
     -- Configuração adicional do lua, torna as coisas no nvim incríveis!
     -- https://github.com/folke/neodev.nvim
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/neodev.nvim',                        opts = {} },
   },
-  config = function ()
+  config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Instalar esses LSPs automaticamente
@@ -74,25 +74,33 @@ return {
         end
       end
     })
-
+    -- Desativar Semantic Tokens para evitar mudanças inesperadas de cor, tava mudando a cor quando começava o java...
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.server_capabilities.semanticTokensProvider then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
+      end
+    })
     -- Configurações do LSP Lua
     lspconfig.lua_ls.setup {
       settings = {
         Lua = {
           diagnostics = {
             -- Fazer com que o servidor de linguagem reconheça o global `vim`
-            globals = {'vim'},
+            globals = { 'vim' },
           },
         },
       },
     }
     -- Configuraão do LSP Kotlin
     local lsp = require('lspconfig')
-    lsp.kotlin_language_server.setup{
-      filetypes = { "kotlin" , "kt", "kts"},
+    lsp.kotlin_language_server.setup {
+      filetypes = { "kotlin", "kt", "kts" },
       -- If you don't update you $PATH
       -- cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
-      cmd = { os.getenv( "HOME" ) .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server"},
+      cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
     }
 
 
@@ -105,4 +113,3 @@ return {
     end
   end
 }
-
