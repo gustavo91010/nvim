@@ -19,15 +19,15 @@ return {
     -- Pacote de snippets prontos para várias linguagens
     -- https://github.com/rafamadriz/friendly-snippets
     'rafamadriz/friendly-snippets',
-    
+
     -- Auto-completar baseado no conteúdo do buffer atual
     -- https://github.com/hrsh7th/cmp-buffer
     'hrsh7th/cmp-buffer',
-    
+
     -- Auto-completar para caminhos de arquivos
     -- https://github.com/hrsh7th/cmp-path
     'hrsh7th/cmp-path',
-    
+
     -- Auto-completar no modo de linha de comando
     -- https://github.com/hrsh7th/cmp-cmdline
     'hrsh7th/cmp-cmdline',
@@ -35,9 +35,10 @@ return {
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-    
+
     -- Carrega snippets do formato VS Code
     require('luasnip.loaders.from_vscode').lazy_load()
+    require('luasnip.loaders.from_lua').load({ paths = { "~/.config/nvim/snippets" } })
     luasnip.config.setup({})
 
     cmp.setup({
@@ -49,19 +50,19 @@ return {
       completion = {
         completeopt = 'menu,menuone,noinsert',
       },
-      
+
       -- Configuração dos atalhos para navegação nas sugestões
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item(), -- Próxima sugestão
         ['<C-k>'] = cmp.mapping.select_prev_item(), -- Sugestão anterior
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4), -- Rolar documentação para cima
-        ['<C-f>'] = cmp.mapping.scroll_docs(4), -- Rolar documentação para baixo
-        ['<C-Space>'] = cmp.mapping.complete {}, -- Mostrar sugestões de auto-completar
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),    -- Rolar documentação para cima
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),     -- Rolar documentação para baixo
+        ['<C-Space>'] = cmp.mapping.complete {},    -- Mostrar sugestões de auto-completar
         ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        
+
         -- Atalho para percorrer sugestões ou pular argumentos dentro de um snippet
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -72,7 +73,7 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
-        
+
         -- Mesma lógica do <Tab>, mas para navegar para trás
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -84,15 +85,15 @@ return {
           end
         end, { 'i', 's' }),
       },
-      
+
       -- Configuração das fontes de auto-completar
       sources = cmp.config.sources({
         { name = "nvim_lsp" }, -- Sugestões do LSP
-        { name = "luasnip" }, -- Sugestões de snippets
-        { name = "buffer" }, -- Sugestões baseadas no buffer atual
-        { name = "path" }, -- Sugestões para caminhos de arquivos
+        { name = "luasnip" },  -- Sugestões de snippets
+        { name = "buffer" },   -- Sugestões baseadas no buffer atual
+        { name = "path" },     -- Sugestões para caminhos de arquivos
       }),
-      
+
       window = {
         -- Adicionar bordas às janelas de sugestões e documentação
         completion = cmp.config.window.bordered(),
@@ -101,4 +102,3 @@ return {
     })
   end,
 }
-

@@ -16,8 +16,8 @@ if cmp then
       ['<C-y>'] = cmp.mapping.confirm(),
     },
     sources = {
-      { name = 'buffer', keyword_length = 3 },  -- only start autocompleting after a few chars typed
-      { name = 'nvim_lsp', max_item_count = 10 },  -- don't overpopulate list with symbols from LSP
+      { name = 'buffer',   keyword_length = 3 },  -- only start autocompleting after a few chars typed
+      { name = 'nvim_lsp', max_item_count = 10 }, -- don't overpopulate list with symbols from LSP
     },
     -- Just for aesthetics
     window = {
@@ -26,8 +26,8 @@ if cmp then
     },
   }
 
- vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.format { async = true }<CR>', { noremap = true, silent = true, desc = "Formatar código" })
+  vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.format { async = true }<CR>',
+    { noremap = true, silent = true, desc = "Formatar código" })
 else
   print("nvim-cmp não carregado!")
 end
-

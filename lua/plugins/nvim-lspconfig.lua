@@ -7,7 +7,7 @@ return {
   dependencies = {
     -- Gerenciamento LSP
     -- https://github.com/williamboman/mason.nvim
-    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason.nvim' , config = true},
     -- https://github.com/williamboman/mason-lspconfig.nvim
     { 'williamboman/mason-lspconfig.nvim' },
 
@@ -49,6 +49,7 @@ return {
       ensure_installed = {
         'java-debug-adapter',
         'java-test',
+        'ktlint',
       },
     })
 
@@ -100,6 +101,7 @@ return {
       filetypes = { "kotlin", "kt", "kts" },
       -- If you don't update you $PATH
       -- cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
+      -- cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
       cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
     }
 
