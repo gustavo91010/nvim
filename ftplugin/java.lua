@@ -27,6 +27,13 @@ local bundles = {
 
 -- Necessário para rodar/depurar testes unitários
 vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
+vim.keymap.set("n", "<Space>tt", function() require('jdtls').test_class() end, { desc = "Rodar testes da classe com JDTLS" })
+
+-- Adiciona o atalho <Space>tt para rodar os testes
+-- vim.api.nvim_set_keymap('n', '<Space>tt', '<Cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
+
+-- Adiciona o atalho <Space>tt para rodar os testes
+vim.api.nvim_set_keymap('n', '<Space>tt', '<Cmd>TestFile<CR>', { noremap = true, silent = true })
 
 -- Consulte `:help vim.lsp.start_client` para obter uma visão geral das opções `config` suportadas.
 local config = {
