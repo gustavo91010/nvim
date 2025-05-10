@@ -19,16 +19,17 @@ return {
       'lua',
       'comment',
       'kotlin',
-      
+      'javascript',
+      'typescript'
+
     },
-    folding={
+    folding = {
       enable = true -- habilita abertura e fechamento de blocos de {}
       -- za(abre ou fecha), zR / zM (abre / fecha todos), manipula os do cursor zo / zc
     }
   },
-  config = function (_, opts)
+  config = function(_, opts)
     local configs = require("nvim-treesitter.configs")
     configs.setup(opts)
   end
 }
-

@@ -1,73 +1,67 @@
--- Suporte LSP
 return {
   -- Configuração LSP
-  -- https://github.com/neovim/nvim-lspconfig
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
   dependencies = {
     -- Gerenciamento LSP
-    -- https://github.com/williamboman/mason.nvim
-    { 'williamboman/mason.nvim' , config = true},
-    -- https://github.com/williamboman/mason-lspconfig.nvim
+    { 'williamboman/mason.nvim', config = true },
     { 'williamboman/mason-lspconfig.nvim' },
-
     -- Auto-instalação de LSPs, linters, formatadores, depuradores
-    -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
     { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
-
     -- Atualizações úteis de status para LSP
-    -- https://github.com/j-hui/fidget.nvim
-    { 'j-hui/fidget.nvim',                        opts = {} },
-
+    { 'j-hui/fidget.nvim', opts = {} },
     -- Configuração adicional do lua, torna as coisas no nvim incríveis!
-    -- https://github.com/folke/neodev.nvim
-    { 'folke/neodev.nvim',                        opts = {} },
+    { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
+    -- Configurar o Mason
     require('mason').setup()
     require('mason-lspconfig').setup({
-      -- Instalar esses LSPs automaticamente
       ensure_installed = {
-        'bashls',
-        'cssls',
-        'html',
-        'gradle_ls',
-        'groovyls',
-        'lua_ls',
-        'jdtls',
-        'jsonls',
-        'kotlin_language_server',
-        'lemminx',
-        'marksman',
-        'quick_lint_js',
-        'yamlls',
+        'bashls', 'cssls', 'html', 'gradle_ls', 'groovyls', 'lua_ls',
+        'jdtls', 'jsonls', 'kotlin_language_server', 'lemminx', 'marksman',
+        'quick_lint_js', 'yamlls', 'ts_ls', 'tailwindcss', 'eslint'
       }
     })
 
+    -- Configurar o Mason Tool Installer
     require('mason-tool-installer').setup({
-      -- Instalar esses linters, formatadores, depuradores automaticamente
-      ensure_installed = {
-        'java-debug-adapter',
-        'java-test',
-        'ktlint',
-      },
+      ensure_installed = { 'java-debug-adapter', 'java-test', 'ktlint' },
     })
 
-    -- Há um problema com o mason-tools-installer rodando com VeryLazy, pois ele é acionado no VimEnter, o que ocorre antes deste plugin ser carregado, então precisamos chamar a instalação explicitamente
-    -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
+    -- Chamar a instalação do Mason Tools manualmente
     vim.api.nvim_command('MasonToolsInstall')
 
+    -- Definir variáveis de configuração LSP
     local lspconfig = require('lspconfig')
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(client, bufnr)
-      -- Crie seus bindings de teclas aqui...
+      -- Defina os bindings de teclas aqui...
     end
 
-    -- Chamar a configuração para cada servidor LSP
+    -- Configuração dos servidores LSP
     require('mason-lspconfig').setup_handlers({
       function(server_name)
-        -- Não chame a configuração para o JDTLS (LSP Java) porque ele será configurado em uma configuração separada
-        if server_name ~= 'jdtls' then
+        -- Configuração específica para cada servidor LSP
+        if server_name == 'jdtls' then
+          -- Java tem uma configuração separada
+          -- O código específico para o JDTLS pode ir aqui, se necessário
+        elseif server_name == 'ts_ls' then
+          lspconfig.ts_ls.setup({
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+          })
+        elseif server_name == 'tailwindcss' then
+          lspconfig.tailwindcss.setup({
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+          })
+        elseif server_name == 'eslint' then
+          lspconfig.eslint.setup({
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+          })
+        else
           lspconfig[server_name].setup({
             on_attach = lsp_attach,
             capabilities = lsp_capabilities,
@@ -75,7 +69,8 @@ return {
         end
       end
     })
-    -- Desativar Semantic Tokens para evitar mudanças inesperadas de cor, tava mudando a cor quando começava o java...
+
+    -- Desativar Semantic Tokens para evitar mudanças inesperadas de cor, especialmente no Java
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -84,33 +79,29 @@ return {
         end
       end
     })
-    -- Configurações do LSP Lua
+
+    -- Configurações específicas para o LSP Lua
     lspconfig.lua_ls.setup {
       settings = {
         Lua = {
           diagnostics = {
-            -- Fazer com que o servidor de linguagem reconheça o global `vim`
-            globals = { 'vim' },
+            globals = { 'vim' },  -- Reconhecer o global `vim`
           },
         },
       },
     }
-    -- Configuraão do LSP Kotlin
-    local lsp = require('lspconfig')
-    lsp.kotlin_language_server.setup {
+
+    -- Configuração do LSP Kotlin
+    lspconfig.kotlin_language_server.setup {
       filetypes = { "kotlin", "kt", "kts" },
-      -- If you don't update you $PATH
-      -- cmd = { os.getenv( "HOME" ) .. "/language_servers/build/install/bin/kotlin_language_server" },
-      -- cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
       cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
     }
 
-
-    -- Configurar globalmente todos os popups flutuantes de LSP (como hover, ajuda de assinatura, etc)
+    -- Configurar globalmente os popups flutuantes de LSP
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
-      opts.border = opts.border or "rounded" -- Definir a borda como arredondada
+      opts.border = opts.border or "rounded"  -- Definir borda arredondada
       return open_floating_preview(contents, syntax, opts, ...)
     end
   end
