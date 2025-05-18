@@ -4,14 +4,14 @@ return {
   event = 'VeryLazy',
   dependencies = {
     -- Gerenciamento LSP
-    { 'williamboman/mason.nvim', config = true },
+    { 'williamboman/mason.nvim',                  config = true },
     { 'williamboman/mason-lspconfig.nvim' },
     -- Auto-instalação de LSPs, linters, formatadores, depuradores
     { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
     -- Atualizações úteis de status para LSP
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',                        opts = {} },
     -- Configuração adicional do lua, torna as coisas no nvim incríveis!
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/neodev.nvim',                        opts = {} },
   },
   config = function()
     -- Configurar o Mason
@@ -85,7 +85,7 @@ return {
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim' },  -- Reconhecer o global `vim`
+            globals = { 'vim' }, -- Reconhecer o global `vim`
           },
         },
       },
@@ -101,8 +101,29 @@ return {
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
-      opts.border = opts.border or "rounded"  -- Definir borda arredondada
+      opts.border = opts.border or "rounded" -- Definir borda arredondada
       return open_floating_preview(contents, syntax, opts, ...)
     end
+
+    -- Configuração null-ls com ktlint
+    -- local null_ls = require("null-ls")
+    -- null_ls.setup({
+    --   sources = {
+    --     null_ls.builtins.formatting.ktlint,
+    --     null_ls.builtins.diagnostics.ktlint,
+    --   },
+    --   on_attach = function(client, bufnr)
+    --     if client.supports_method("textDocument/formatting") then
+    --       vim.api.nvim_clear_autocmds({ group = vim.api.nvim_create_augroup("LspFormatting", {}), buffer = bufnr })
+    --       vim.api.nvim_create_autocmd("BufWritePre", {
+    --         group = vim.api.nvim_create_augroup("LspFormatting", {}),
+    --         buffer = bufnr,
+    --         callback = function()
+    --           vim.lsp.buf.format({ bufnr = bufnr })
+    --         end,
+    --       })
+    --     end
+    --   end,
+    -- })
   end
 }

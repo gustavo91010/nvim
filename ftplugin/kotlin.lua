@@ -28,6 +28,13 @@ if cmp then
 
   vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.format { async = true }<CR>',
     { noremap = true, silent = true, desc = "Formatar código" })
+
+  -- Mapeamento para "Go to Definition"
+  vim.api.nvim_set_keymap('n', '<leader>gd', ':lua vim.lsp.buf.definition()<CR>',
+    { noremap = true, silent = true, desc = "Ir para definição" })
+
+  vim.api.nvim_set_keymap('n', '<leader>ga', ':lua vim.lsp.buf.code_action()<CR>',
+    { noremap = true, silent = true, desc = "Ações de código" })
 else
   print("nvim-cmp não carregado!")
 end

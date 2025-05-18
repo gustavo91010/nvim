@@ -175,7 +175,7 @@ vim.api.nvim_create_autocmd("BufDelete", {
   pattern = "*",
   callback = function()
     if vim.bo.modified then
-      vim.cmd("write")
+      -- vim.cmd("write") qualquer coisa libera essa linha aqui...
     end
   end,
 })

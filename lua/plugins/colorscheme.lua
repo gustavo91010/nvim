@@ -244,7 +244,7 @@ return {
   config = function()
     require('tairiki').setup {
       style = 'dark',
-      transparent = false, -- Fundo transparente
+      transparent = true, -- Fundo transparente
       term_colors = true,
       ending_tildes = false,
       cmp_itemkind_reverse = false,
