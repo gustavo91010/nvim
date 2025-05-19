@@ -95,6 +95,10 @@ return {
     lspconfig.kotlin_language_server.setup {
       filetypes = { "kotlin", "kt", "kts" },
       cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/kotlin-language-server/server/bin/kotlin-language-server" },
+      -- Colocando essa função aqui, para garantir que o plugin null-ls tenha proioridade na formatação do kotlin
+      on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+      end,
     }
 
     -- Configurar globalmente os popups flutuantes de LSP
@@ -105,25 +109,28 @@ return {
       return open_floating_preview(contents, syntax, opts, ...)
     end
 
-    -- Configuração null-ls com ktlint
-    -- local null_ls = require("null-ls")
-    -- null_ls.setup({
-    --   sources = {
-    --     null_ls.builtins.formatting.ktlint,
-    --     null_ls.builtins.diagnostics.ktlint,
-    --   },
-    --   on_attach = function(client, bufnr)
-    --     if client.supports_method("textDocument/formatting") then
-    --       vim.api.nvim_clear_autocmds({ group = vim.api.nvim_create_augroup("LspFormatting", {}), buffer = bufnr })
-    --       vim.api.nvim_create_autocmd("BufWritePre", {
-    --         group = vim.api.nvim_create_augroup("LspFormatting", {}),
-    --         buffer = bufnr,
-    --         callback = function()
-    --           vim.lsp.buf.format({ bufnr = bufnr })
-    --         end,
-    --       })
-    --     end
-    --   end,
-    -- })
+    -- -- ... (todo o conteúdo anterior permanece igual até o final da config)
+
+    --     -- Configuração null-ls com ktlint
+    --     local null_ls = require("null-ls")
+    --     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+    --     null_ls.setup({
+    --       sources = {
+    --         null_ls.builtins.formatting.ktlint,
+    --         null_ls.builtins.diagnostics.ktlint,
+    --       },
+    --       on_attach = function(client, bufnr)
+    --         if client.supports_method("textDocument/formatting") then
+    --           vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    --           vim.api.nvim_create_autocmd("BufWritePre", {
+    --             group = augroup,
+    --             buffer = bufnr,
+    --             callback = function()
+    --               vim.lsp.buf.format({ bufnr = bufnr })
+    --             end,
+    --           })
+    --         end
+    --       end,
+    --     })
   end
 }
