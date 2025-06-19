@@ -40,35 +40,49 @@ return {
     end
 
     -- Configuração dos servidores LSP
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        -- Configuração específica para cada servidor LSP
-        if server_name == 'jdtls' then
-          -- Java tem uma configuração separada
-          -- O código específico para o JDTLS pode ir aqui, se necessário
-        elseif server_name == 'ts_ls' then
-          lspconfig.ts_ls.setup({
-            on_attach = lsp_attach,
-            capabilities = lsp_capabilities,
-          })
-        elseif server_name == 'tailwindcss' then
-          lspconfig.tailwindcss.setup({
-            on_attach = lsp_attach,
-            capabilities = lsp_capabilities,
-          })
-        elseif server_name == 'eslint' then
-          lspconfig.eslint.setup({
-            on_attach = lsp_attach,
-            capabilities = lsp_capabilities,
-          })
-        else
-          lspconfig[server_name].setup({
-            on_attach = lsp_attach,
-            capabilities = lsp_capabilities,
-          })
-        end
-      end
-    })
+    -- Adicionar os servidores manualmente e faz um for para rodar cada um
+    --     os que não estão aqui, tem um aruqivo proprio na pasra ftplugin
+    local servers = {
+      'bashls', 'cssls', 'html', 'gradle_ls', 'groovyls', 'lua_ls',
+      'jsonls', 'lemminx', 'marksman', 'quick_lint_js', 'yamlls',
+      'tailwindcss', 'eslint'
+    }
+
+    for _, server in ipairs(servers) do
+      lspconfig[server].setup({
+        on_attach = lsp_attach,
+        capabilities = lsp_capabilities,
+      })
+    end
+    -- require('mason-lspconfig').setup_handlers({
+    --   function(server_name)
+    --     -- Configuração específica para cada servidor LSP
+    --     if server_name == 'jdtls' then
+    --       -- Java tem uma configuração separada
+    --       -- O código específico para o JDTLS pode ir aqui, se necessário
+    --     elseif server_name == 'ts_ls' then
+    --       lspconfig.ts_ls.setup({
+    --         on_attach = lsp_attach,
+    --         capabilities = lsp_capabilities,
+    --       })
+    --     elseif server_name == 'tailwindcss' then
+    --       lspconfig.tailwindcss.setup({
+    --         on_attach = lsp_attach,
+    --         capabilities = lsp_capabilities,
+    --       })
+    --     elseif server_name == 'eslint' then
+    --       lspconfig.eslint.setup({
+    --         on_attach = lsp_attach,
+    --         capabilities = lsp_capabilities,
+    --       })
+    --     else
+    --       lspconfig[server_name].setup({
+    --         on_attach = lsp_attach,
+    --         capabilities = lsp_capabilities,
+    --       })
+    --     end
+    --   end
+    -- })
 
     -- Desativar Semantic Tokens para evitar mudanças inesperadas de cor, especialmente no Java
     vim.api.nvim_create_autocmd("LspAttach", {

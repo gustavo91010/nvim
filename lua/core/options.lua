@@ -74,6 +74,13 @@ opt.iskeyword:append("-")
 -- Habilitar o mouse no nvim
 opt.mouse = "a"
 
+-- Desativar as setas no modo normal(n) e no visual(v):
+vim.keymap.set({ 'n', 'v' }, '<Up>', '<Nop>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<Down>', '<Nop>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<Left>', '<Nop>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<Right>', '<Nop>', { noremap = true })
+
+
 -- Dobramento de código
 opt.foldlevel = 20
 opt.foldmethod = "expr"
