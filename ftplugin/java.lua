@@ -1,3 +1,5 @@
+print("ftplugin/java.lua carregado")
+
 -- Configuração do JDTLS (LSP Java)
 local home = vim.env.HOME -- Obtém o diretório home
 
@@ -27,7 +29,8 @@ local bundles = {
 
 -- Necessário para rodar/depurar testes unitários
 vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
-vim.keymap.set("n", "<Space>tt", function() require('jdtls').test_class() end, { desc = "Rodar testes da classe com JDTLS" })
+vim.keymap.set("n", "<Space>tt", function() require('jdtls').test_class() end,
+  { desc = "Rodar testes da classe com JDTLS" })
 
 -- Adiciona o atalho <Space>tt para rodar os testes
 -- vim.api.nvim_set_keymap('n', '<Space>tt', '<Cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
@@ -37,7 +40,7 @@ vim.api.nvim_set_keymap('n', '<Space>tt', '<Cmd>TestFile<CR>', { noremap = true,
 
 -- Consulte `:help vim.lsp.start_client` para obter uma visão geral das opções `config` suportadas.
 local config = {
-      autostart = true,
+  autostart = true,
   -- O comando que inicia o servidor de linguagem
   -- Veja: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
@@ -48,9 +51,9 @@ local config = {
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
     "-javaagent:" .. home .. "/.local/share/nvim/mason/share/jdtls/lombok.jar", -- Usando Lombok
-    "-Xmx4g", -- Aloca 4GB de memória
+    "-Xmx4g",                                                                   -- Aloca 4GB de memória
     "--add-modules=ALL-SYSTEM",
-    "--add-opens", "java.base/java.util=ALL-UNNAMED", -- Permissões de módulos
+    "--add-opens", "java.base/java.util=ALL-UNNAMED",                           -- Permissões de módulos
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
 
     -- Localização do Eclipse jdtls
@@ -102,11 +105,11 @@ local config = {
         enabled = true, -- Ativa a sugestão de referências
       },
       references = {
-        includeDecompiledSources = true, -- Incluir fontes decompiladas
+        includeDecompiledSources = true,  -- Incluir fontes decompiladas
       },
       signatureHelp = { enabled = true }, -- Habilita ajuda de assinatura de métodos
       format = {
-        enabled = true, -- Habilita formatação automática
+        enabled = true,                   -- Habilita formatação automática
         -- Formatação funciona por padrão, mas você pode referenciar um arquivo/URL específico se desejar
         -- settings = {
         --   url = "https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml",
@@ -132,7 +135,7 @@ local config = {
       },
       sources = {
         organizeImports = {
-          starThreshold = 9999, -- Organiza imports, se houver mais de 9999 imports
+          starThreshold = 9999,       -- Organiza imports, se houver mais de 9999 imports
           staticStarThreshold = 9999, -- Organiza imports estáticos
         },
       },
@@ -140,7 +143,7 @@ local config = {
         toString = {
           template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}", -- Template para gerar método toString
         },
-        useBlocks = true, -- Usa blocos para código gerado
+        useBlocks = true,                                                                      -- Usa blocos para código gerado
       },
     },
   },
@@ -159,7 +162,7 @@ local config = {
 
 -- Necessário para depuração
 config["on_attach"] = function(client, bufnr)
-  jdtls.setup_dap({ hotcodereplace = "auto" }) -- Habilita substituição de código durante a execução
+  jdtls.setup_dap({ hotcodereplace = "auto" })        -- Habilita substituição de código durante a execução
   require("jdtls.dap").setup_dap_main_class_configs() -- Configura as classes principais para depuração
 end
 
@@ -167,15 +170,15 @@ end
 jdtls.start_or_attach(config)
 
 -- Configuração de destaque de erro na linha inteira
-vim.cmd[[highlight LspDiagnosticsVirtualTextError guibg=none guifg=#FF0000]] -- Erro no texto virtual
-vim.cmd[[highlight LspDiagnosticsUnderlineError guibg=none guifg=#FF0000]] -- Linha com erro destacada
+vim.cmd [[highlight LspDiagnosticsVirtualTextError guibg=none guifg=#FF0000]] -- Erro no texto virtual
+vim.cmd [[highlight LspDiagnosticsUnderlineError guibg=none guifg=#FF0000]]   -- Linha com erro destacada
 
 -- Ativa o destaque para erros LSP
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true, -- Texto virtual para os erros
-    signs = true, -- Sinais de erro ao lado
-    underline = true, -- Sublinhado nos erros
+    virtual_text = true,      -- Texto virtual para os erros
+    signs = true,             -- Sinais de erro ao lado
+    underline = true,         -- Sublinhado nos erros
     update_in_insert = false, -- Não atualizar enquanto digita
   })(_, result, ctx, config)
 end

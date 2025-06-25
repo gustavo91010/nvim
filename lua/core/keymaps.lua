@@ -31,6 +31,7 @@ vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
 end, { expr = true })
 
 -- Mapeamentos gerais
+keymap.set("n", "<leader>qa", ":qa<CR>")       -- sair de vez
 keymap.set("n", "<leader>wq", ":wq<CR>")       -- salvar e sair
 keymap.set("n", "<leader>qq", ":q!<CR>")       -- sair sem salvar
 keymap.set("n", "<leader>ww", ":w<CR>")        -- salvar
