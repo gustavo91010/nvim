@@ -5,7 +5,7 @@ return {
   priority = 1000,
   config = function()
     vim.g.alduin_Shout_Aura_Whisper = 1 -- Troca o matchparen por sublinhado
-    -- vim.g.alduin_Shout_Fire_Breath = 1  -- vermelho nos highlights
+    vim.g.alduin_Shout_Fire_Breath = 1  -- vermelho nos highlights
     -- Ativa o tema
     vim.cmd("colorscheme alduin")
 
