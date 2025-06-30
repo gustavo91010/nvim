@@ -1,34 +1,15 @@
--- -- O vermelho e amareo, esse é massa
-return {
-  "AlessandroYorba/Alduin",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    vim.g.alduin_Shout_Aura_Whisper = 1 -- Troca o matchparen por sublinhado
-    vim.g.alduin_Shout_Fire_Breath = 1  -- vermelho nos highlights
-    -- Ativa o tema
-    vim.cmd("colorscheme alduin")
-
-    -- Define fundo transparente
-    vim.cmd([[
-      highlight Normal guibg=NONE ctermbg=NONE
-      highlight NormalNC guibg=NONE ctermbg=NONE
-      highlight VertSplit guibg=NONE ctermbg=NONE
-      highlight SignColumn guibg=NONE ctermbg=NONE
-      highlight StatusLine guibg=NONE ctermbg=NONE
-      highlight LineNr guibg=NONE ctermbg=NONE
-    ]])
-  end,
-}
-
+-- -- -- O vermelho e amareo, esse é massa
 -- return {
---   "nanotech/jellybeans.vim",
+--   "AlessandroYorba/Alduin",
 --   lazy = false,
 --   priority = 1000,
 --   config = function()
---     vim.cmd("colorscheme jellybeans")
+--     vim.g.alduin_Shout_Aura_Whisper = 1 -- Troca o matchparen por sublinhado
+--     vim.g.alduin_Shout_Fire_Breath = 1  -- vermelho nos highlights
+--     -- Ativa o tema
+--     vim.cmd("colorscheme alduin")
 
---     -- Transparência
+--     -- Define fundo transparente
 --     vim.cmd([[
 --       highlight Normal guibg=NONE ctermbg=NONE
 --       highlight NormalNC guibg=NONE ctermbg=NONE
@@ -37,14 +18,40 @@ return {
 --       highlight StatusLine guibg=NONE ctermbg=NONE
 --       highlight LineNr guibg=NONE ctermbg=NONE
 --     ]])
-
---     -- Estilo
---     vim.cmd([[
---       highlight Comment gui=italic
---       highlight Keyword gui=bold
---     ]])
 --   end,
 -- }
+
+return {
+  "nanotech/jellybeans.vim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    ---@diagnostic disable: undefined-global
+    vim.cmd("colorscheme jellybeans")
+
+    -- Transparência
+    vim.cmd([[
+      highlight Normal guibg=NONE ctermbg=NONE
+      highlight NormalNC guibg=NONE ctermbg=NONE
+      highlight VertSplit guibg=NONE ctermbg=NONE
+      highlight SignColumn guibg=NONE ctermbg=NONE
+      highlight StatusLine guibg=NONE ctermbg=NONE
+      highlight LineNr guibg=NONE ctermbg=NONE
+      highlight Pmenu guibg=NONE ctermbg=NONE
+      highlight PmenuSel guibg=NONE ctermbg=NONE
+      highlight TelescopeBorder guibg=NONE ctermbg=NONE
+      highlight TelescopeNormal guibg=NONE ctermbg=NONE
+      highlight EndOfBuffer guibg=NONE ctermbg=NONE
+    ]])
+
+    -- Estilo
+    vim.cmd([[
+      highlight Comment gui=italic
+      highlight Keyword gui=bold
+    ]])
+  end,
+}
+
 
 -- Modelo basico
 -- return {

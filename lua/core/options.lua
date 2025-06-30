@@ -105,3 +105,6 @@ vim.api.nvim_set_keymap("x", "<A-S-Down>", ":copy '>+1<CR>gv=gv", { noremap = tr
 -- Duplicar uma linha ou bloco para cima com Alt + Shift + Seta para cima
 vim.api.nvim_set_keymap("n", "<A-S-Up>", ":copy .-1<CR>==k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("x", "<A-S-Up>", ":copy '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+
+
