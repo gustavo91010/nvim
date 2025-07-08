@@ -64,7 +64,11 @@ autocmd FileType java nnoremap <leader>gf :%!java -jar ~/.vim/tools/google-java-
 
 
 " Programas para instalar----------------------------------------------------------
-"
+"cria a pasta na maquina remota
+" mkdir -p .vim/autoload
+" Envia pra la o vim rc e o plug
+" scp -r .vimrc vm_005:/home/ec2-user/
+" scp -r .vim/autoload/plug.vim vm_005:/home/ec2-user/.vim/autoload
 " - Inatalando o vim plug
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
