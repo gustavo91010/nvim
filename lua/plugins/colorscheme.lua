@@ -1,3 +1,27 @@
+-- I
+-- 
+-- return {
+--   "navarasu/onedark.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require('onedark').setup({
+--       style = 'dark',  -- 'dark' | 'darker' | 'cool' | 'deep' | 'warm' | 'warmer' | 'light'
+--       transparent = true, -- Habilita fundo transparente
+--       term_colors = true,
+--       ending_tildes = false,
+      
+--       highlights = {
+--         -- Comment = { italic = true },
+--         -- Keyword = { bold = true },
+--         -- Adicione outros highlights personalizados se necessário
+--       }
+--     })
+
+--     vim.cmd("colorscheme onedark")
+
+--   end,
+-- }
 return{
   "nanotech/jellybeans.vim",
   lazy = false,

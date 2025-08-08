@@ -5,6 +5,7 @@ local keymap = vim.keymap
 local builtin = require('telescope.builtin')
 local luasnip = require("luasnip")
 
+local dap = require('dap')
 -- mapeando snipperd:
 -- Listar e navegar pelas escolhas de snippets com <C-k>
 vim.keymap.set("i", "<C-k>", function()
@@ -60,13 +61,13 @@ keymap.set("n", "<leader>bc", ":lua vim.cmd('buffer ' .. vim.fn.input('Buffer: '
 keymap.set("n", "<leader>sw", "<C-w><5")                   -- diminuir largura das janelas divididas
 keymap.set("n", "<leader>sth", ":split<CR>:terminal<CR>")  -- Nova aba horizontal com terminal
 keymap.set("n", "<leader>stv", ":vsplit<CR>:terminal<CR>") -- Nova aba vertical com terminal
-keymap.set("n", "<leader>tt", ":!tilix -e nvim -R %<CR>")     -- Abrir o arquivo atual no Tilix com nvim
-keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Sair do modo terminal com Esc
+keymap.set("n", "<leader>tt", ":!tilix -e nvim -R %<CR>")  -- Abrir o arquivo atual no Tilix com nvim
+keymap.set("t", "<Esc>", "<C-\\><C-n>")                    -- Sair do modo terminal com Esc
 
 
 
 -- Gerenciamento de abas
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- abrir uma nova aba
+keymap.set("n", "<leader>to", ":tabnew<CR>")   -- abrir uma nova aba
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- fechar uma aba
 keymap.set("n", "<leader>tn", ":tabn<CR>")     -- próxima aba
 keymap.set("n", "<leader>tp", ":tabp<CR>")     -- aba anterior
@@ -99,7 +100,7 @@ keymap.set("n", "<C-p>", builtin.find_files, {})
 keymap.set("n", "<leader>fg", builtin.live_grep, {}) -- deveria procurar no conteudo.. sudo apt install ripgrep.
 keymap.set("n", "<C-ç>", builtin.live_grep, {})
 
-keymap.set('n', '<leader>pp', '<cmd>Telescope registers<CR>', { noremap = true, silent = true }) -- mostra historicos de clipboard
+keymap.set('n', '<leader>pp', '<cmd>Telescope registers<CR>', { noremap = true, silent = true })         -- mostra historicos de clipboard
 keymap.set('n', '<leader>fb', builtin.buffers, {})                                                       -- busca fuzzy por buffers abertos
 keymap.set('n', '<leader>fh', builtin.help_tags, {})                                                     -- busca fuzzy por tags de ajuda
 keymap.set('n', '<leader>fs', builtin.current_buffer_fuzzy_find, {})                                     -- busca fuzzy no buffer do arquivo atual
@@ -118,9 +119,9 @@ keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- alternar git blame
 keymap.set("n", "<leader>gs", ":Gstatus<CR>")        -- abre status do Git no modo split
 
 -- Harpoon favoritos de arquivos
-keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)                 -- adicionar
-keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)          -- vizualizar
-keymap.set("n", "<leader>hr", function() require("harpoon.mark").rm_file() end) -- remover
+keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)                    -- adicionar
+keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)             -- vizualizar
+keymap.set("n", "<leader>hr", function() require("harpoon.mark").rm_file() end)    -- remover
 keymap.set("n", "<leader>hcl", function() require("harpoon.mark").clear_all() end) -- limpar tudo
 keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end)
 keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end)
@@ -141,9 +142,9 @@ keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 -- keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 
-keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')          -- Ir para a declaração
-keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')       -- Ir para a implementação
-keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')      -- Ir para a definição do tipo
+keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')     -- Ir para a declaração
+keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')  -- Ir para a implementação
+keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>') -- Ir para a definição do tipo
 -- keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')           -- Listar referências do símbolo
 keymap.set('n', '<leader>gr', '<cmd>Telescope lsp_references<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')       -- Mostrar assinatura da função
@@ -154,15 +155,27 @@ keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.code_action()<CR>')               
 keymap.set('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')          -- Ações de código (correções)
 -- keymap.set('n', '<leader>ga', '<cmd>Telescope lsp_code_actions<CR>', { noremap = true, silent = true })
 
-keymap.set('n', '<leader>dd', '<cmd>lua vim.diagnostic.open_float()<CR>')        -- Mostrar erro/aviso
-keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')         -- Ir para erro anterior
-keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')         -- Ir para próximo erro
-keymap.set('n', '<leader>dl', '<cmd>lua vim.diagnostic.setloclist()<CR>')        -- Mostrar lista de diagnósticos
-keymap.set('n', '<leader>df', '<cmd>lua vim.diagnostic.setqflist()<CR>')         -- Mostrar diagnósticos globais no Quickfix
+keymap.set('n', '<leader>dd', '<cmd>lua vim.diagnostic.open_float()<CR>') -- Mostrar erro/aviso
+keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')  -- Ir para erro anterior
+keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')  -- Ir para próximo erro
+keymap.set('n', '<leader>dl', '<cmd>lua vim.diagnostic.setloclist()<CR>') -- Mostrar lista de diagnósticos
+keymap.set('n', '<leader>df', '<cmd>lua vim.diagnostic.setqflist()<CR>')  -- Mostrar diagnósticos globais no Quickfix
 keymap.set('n', '<leader>dt', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 
-keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')      -- Mostrar símbolos do documento
-keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')            -- Auto-completar
+keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>') -- Mostrar símbolos do documento
+keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')       -- Auto-completar
+
+-- Define os mapeamentos para depuração com o nvim-dap
+vim.keymap.set('n', '<F5>', function() dap.continue() end)               -- Inicia ou continua a execução do programa
+vim.keymap.set('n', '<F10>', function() dap.step_over() end)             -- Avança para a próxima linha (sem entrar em funções)
+vim.keymap.set('n', '<F11>', function() dap.step_into() end)             -- Entra dentro da função chamada na linha atual
+vim.keymap.set('n', '<F12>', function() dap.step_out() end)              -- Sai da função atual e retorna para o chamador
+vim.keymap.set('n', '<Leader>b', function() dap.toggle_breakpoint() end) -- Alterna um breakpoint na linha atual
+vim.keymap.set('n', '<Leader>B', function()                              -- Define um breakpoint com condição
+  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end)
+
+
 
 -- Organizar imports no Java
 keymap.set("n", "<leader>go", function()
