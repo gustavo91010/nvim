@@ -1,14 +1,38 @@
 print("ftplugin/kotlin.lua carregado")
 
--- Configuração para autocompletar Kotlin usando nvim-cmp e LuaSnip
+-- ===============================
+-- LSP Kotlin
+-- ===============================
+local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+local function on_attach(client, bufnr)
+  -- Desativa formatação pelo LSP (usaremos null-ls/ktlint)
+  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentRangeFormattingProvider = false
+
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '<leader>gf', function() vim.lsp.buf.format { async = true } end, opts)
+end
+
+lspconfig.kotlin_language_server.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- ===============================
+-- Autocompletar com nvim-cmp + LuaSnip
+-- ===============================
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
--- Garante que snippets customizados sejam carregados
--- require("luasnip.loaders.from_lua").lazy_load()
-require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/lua/snippets" })
-
+-- Carregar snippets customizados
+require("luasnip.loaders.from_lua").lazy_load({
+  paths = vim.fn.stdpath("config") .. "/lua/snippets"
+})
 
 cmp.setup {
   snippet = {
@@ -26,7 +50,7 @@ cmp.setup {
     ['<C-y>'] = cmp.mapping.confirm(),
   },
   sources = {
-    { name = 'luasnip' }, -- agora snippets funcionam
+    { name = 'luasnip' },
     { name = 'buffer',   keyword_length = 3 },
     { name = 'nvim_lsp', max_item_count = 10 },
   },
@@ -35,14 +59,4 @@ cmp.setup {
     documentation = cmp.config.window.bordered(),
   },
 }
-
--- Atalhos úteis
-vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.format { async = true }<CR>',
-  { noremap = true, silent = true, desc = "Formatar código" })
-
-vim.api.nvim_set_keymap('n', '<leader>gd', ':lua vim.lsp.buf.definition()<CR>',
-  { noremap = true, silent = true, desc = "Ir para definição" })
-
-vim.api.nvim_set_keymap('n', '<leader>ga', ':lua vim.lsp.buf.code_action()<CR>',
-  { noremap = true, silent = true, desc = "Ações de código" })
 

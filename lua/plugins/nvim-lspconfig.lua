@@ -1,3 +1,4 @@
+
 return {
   -- Configuração LSP
   'neovim/nvim-lspconfig',
@@ -19,7 +20,7 @@ return {
     require('mason-lspconfig').setup({
       ensure_installed = {
         'bashls', 'cssls', 'html', 'gradle_ls', 'groovyls', 'lua_ls',
-        'jdtls', 'jsonls', 'kotlin_language_server', 'lemminx', 'marksman',
+        'jdtls', 'jsonls', 'kotlin_language_server','ktlinit', 'lemminx', 'marksman',
         'quick_lint_js', 'yamlls', 'ts_ls', 'tailwindcss', 'eslint'
       }
     })
@@ -60,6 +61,26 @@ return {
       'tailwindcss', 'eslint'
     }
 
+-- for _, server in ipairs(servers) do
+--   if server == "lua_ls" then
+--     lspconfig.lua_ls.setup({
+--       on_attach = lsp_attach,
+--       capabilities = lsp_capabilities,
+--       settings = {
+--         Lua = {
+--           diagnostics = { globals = { "vim" } },
+--           workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+--         },
+--       },
+--     })
+--   else
+--     lspconfig[server].setup({
+--       on_attach = lsp_attach,
+--       capabilities = lsp_capabilities,
+--     })
+--   end
+-- end,
+-- }
     for _, server in ipairs(servers) do
       lspconfig[server].setup({
         on_attach = lsp_attach,
