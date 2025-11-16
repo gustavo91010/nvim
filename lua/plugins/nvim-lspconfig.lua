@@ -20,7 +20,8 @@ return {
     require('mason-lspconfig').setup({
       ensure_installed = {
         'bashls', 'cssls', 'html', 'gradle_ls', 'groovyls', 'lua_ls',
-        'jdtls', 'jsonls', 'kotlin_language_server','ktlinit', 'lemminx', 'marksman',
+        -- 'jdtls', 'jsonls', 'kotlin_language_server','ktlinit', 'lemminx', 'marksman',
+        'jdtls', 'jsonls',  'lemminx', 'marksman',
         'quick_lint_js', 'yamlls', 'ts_ls', 'tailwindcss', 'eslint', 'pyright'
         -- 'quick_lint_js', 'yamlls', 'ts_ls', 'tailwindcss', 'eslint'
       }

@@ -1,5 +1,8 @@
-print("ftplugin/kotlin.lua carregado")
-
+-- evita setup duplicado do kotlin_language_server
+if vim.g._kls_setup then
+  return
+end
+vim.g._kls_setup = true
 -- ===============================
 -- LSP Kotlin
 -- ===============================
@@ -18,9 +21,37 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', '<leader>gf', function() vim.lsp.buf.format { async = true } end, opts)
 end
 
+
+-- local root_pattern = function(fname)
+--   return lspconfig.util.root_pattern("pom.xml", ".git")(fname)
+-- end
+
+local root_pattern = function(fname)
+  return lspconfig.util.root_pattern(
+    "pom.xml",
+    "build.gradle",
+    "build.gradle.kts",
+    "settings.gradle",
+    "settings.gradle.kts",
+    ".git"
+  )(fname)
+end
+
+
+-- Garante que o classpath Maven exista
+local project_root = vim.fn.getcwd()
+local classpath_file = project_root .. "/.kls-classpath"
+
+if vim.fn.filereadable(classpath_file) == 0 then
+  print("Gerando .kls-classpath...")
+  vim.fn.system("mvn dependency:build-classpath -Dmdep.outputFile=.kls-classpath")
+end
+-- Configuração do servidor Kotlin
 lspconfig.kotlin_language_server.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  root_dir = root_pattern,
+  cmd = { "kotlin-language-server" },
 })
 
 -- ===============================
@@ -59,4 +90,46 @@ cmp.setup {
     documentation = cmp.config.window.bordered(),
   },
 }
+
+
+-- garantir esses executores no plugin do pon do kotlin:expand
+
+
+--         <plugin>
+--         <groupId>org.jetbrains.kotlin</groupId>
+--         <artifactId>kotlin-maven-plugin</artifactId>
+--         <!-- tem que ter esses executores para o nvim reconhecer o kotlin -->
+--         <executions>
+--           <execution>
+--             <id>compile</id>
+--             <phase>compile</phase>
+--             <goals>
+--               <goal>compile</goal>
+--             </goals>
+--           </execution>
+--           <execution>
+--             <id>test-compile</id>
+--             <phase>test-compile</phase>
+--             <goals>
+--               <goal>test-compile</goal>
+--             </goals>
+--           </execution>
+--         </executions>
+
+--         <configuration>
+--           <args>
+--             <arg>-Xjsr305=strict</arg>
+--           </args>
+--           <compilerPlugins>
+--             <plugin>spring</plugin>
+--           </compilerPlugins>
+--         </configuration>
+--         <dependencies>
+--           <dependency>
+--             <groupId>org.jetbrains.kotlin</groupId>
+--             <artifactId>kotlin-maven-allopen</artifactId>
+--             <version>${kotlin.version}</version>
+--           </dependency>
+--         </dependencies>
+--       </plugin>
 

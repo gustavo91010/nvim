@@ -6,8 +6,8 @@ return {
 
     -- Adiciona ktlint como formatador e linter
     opts.sources = vim.list_extend(opts.sources or {}, {
-      nls.builtins.formatting.ktlint,
-      nls.builtins.diagnostics.ktlint,
+      -- nls.builtins.formatting.ktlint,
+      -- nls.builtins.diagnostics.ktlint,
          -- JSON/YAML/Markdown
       nls.builtins.formatting.prettierd,
       -- npm install -g @fsouza/prettierd

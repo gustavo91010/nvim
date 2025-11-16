@@ -35,7 +35,7 @@ end, { expr = true })
 keymap.set("n", "<leader>qa", ":qa<CR>")       -- sair de vez
 keymap.set("n", "<leader>wq", ":wq<CR>")       -- salvar e sair
 keymap.set("n", "<leader>qq", ":q!<CR>")       -- sair sem salvar
-keymap.set("n", "<leader>ww", ":w<CR>")        -- salvar
+keymap.set("n", "<leader>ww", ":w!<CR>")        -- salvar
 
 keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- abrir URL sob o cursor
 
