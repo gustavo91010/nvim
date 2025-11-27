@@ -1,12 +1,25 @@
 -- evita setup duplicado do kotlin_language_server
-if vim.g._kls_setup then
+if vim.g._kls_loaded then
   return
 end
-vim.g._kls_setup = true
+vim.g._kls_loaded = true
 -- ===============================
 -- LSP Kotlin
 -- ===============================
 local lspconfig = require("lspconfig")
+require("lspconfig").jdtls.setup({
+  filetypes = { "java" }, -- não abre em kotlin
+  root_dir = function(fname)
+    return require("lspconfig").util.root_pattern(
+      "pom.xml",
+      "build.gradle",
+      "build.gradle.kts",
+      "settings.gradle",
+      "settings.gradle.kts"
+    )(fname)
+  end
+})
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local function on_attach(client, bufnr)
@@ -132,4 +145,3 @@ cmp.setup {
 --           </dependency>
 --         </dependencies>
 --       </plugin>
-
