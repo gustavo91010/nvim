@@ -1,3 +1,6 @@
+-- tem que instalar o ripgrep
+--   sudo apt install ripgrep
+
 return {
   -- https://github.com/nvim-telescope/telescope.nvim
   'nvim-telescope/telescope.nvim',
