@@ -181,6 +181,7 @@ end)
 -- meus, sera que vai??
 
 keymap.set("n", "<leader>path", ":let @+ = expand('%:p')")     -- Copia o path da raiz ate aqui
+keymap.set("n", "<leader>name", ":let @+ = expand('%:t')")     -- Copia o nome do arquivo com extensão
 -- Substituiu meu LspInfo
 keymap.set("n", "<leader>info", ":lua for _, c in ipairs(vim.lsp.get_clients()) do print(vim.inspect({ name = c.name, root = c.config.root_dir, cmd = c.config.cmd, filetypes = c.config.filetypes, buffers = c.attached_buffers })) end")
 
